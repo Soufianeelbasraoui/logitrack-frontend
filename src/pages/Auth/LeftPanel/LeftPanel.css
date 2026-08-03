@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   padding: 50px;
-  background: linear-gradient(180deg, #0d2f94 0%, #1547c7 55%,#1b5cff 100%);
+  background:#0d2f94;
   color: #fff;
 }
 
@@ -80,28 +80,6 @@
   color:#dbeafe;
   font-size:14px;
 }
-.circle-top{
-  position:absolute;
-  top:-120px;
-  right:-120px;
-
-  width:320px;
-  height:320px;
-  border-radius:50%;
-  background:rgba(255,255,255,.05);
-}
-.circle-bottom{
-  position:absolute;
-  bottom:-170px;
-  left:-80px;
-
-  width:550px;
-  height:300px;
-
-  border-radius:50%;
-  background:rgba(255,255,255,.05);
-}
-
 @media(max-width:992px){
 .left-panel{
 display:none;

@@ -85,7 +85,6 @@ function Register() {
             </div>
             <div className="mb-3">
               <label className="form-label">  Mot de passe</label>
-
               <input
                 type="password"
                 className={`form-control ${errors.password ? "is-invalid" : ""}`}
@@ -102,7 +101,7 @@ function Register() {
                 className={`form-select ${errors.role ? "is-invalid" : ""}`}
                 {...register("role")}
               >
-                <option value="">  -- Choisir un rôle --</option>
+                <option value="">Choisir un rôle</option>
                 <option value="ADMIN">ADMIN </option>
                 <option value="MANAGER">  MANAGER</option>
                 <option value="AGENT">AGENT</option>

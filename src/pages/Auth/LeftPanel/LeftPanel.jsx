@@ -46,10 +46,7 @@ function LeftPanel() {
             </div>
           ))}
         </div>
-
       </div>
-      <div className="circle-top"></div>
-      <div className="circle-bottom"></div>
     </div>
   );
 }
