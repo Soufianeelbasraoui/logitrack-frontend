@@ -1,0 +1,19 @@
+.crad-agent{
+    display:  flex;
+    justify-content:space-between;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+.card-agent1{
+    border-top: 2px solid rgb(224, 200, 62);
+    width: 230px;
+}
+.card-agent2{
+  border-top: 2px solid rgb(72, 72, 224);
+    width: 230px;
+}
+.card-agent2{
+    border-top:2px solid rgb(68, 226, 68) ;
+    width: 230px;
+}
