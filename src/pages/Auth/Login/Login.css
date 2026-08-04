@@ -2,6 +2,7 @@
     display:flex;
     min-height:80vh;
     background:#f8f9fa;
+    flex-wrap: wrap;
 }
 
 .right-panel{
