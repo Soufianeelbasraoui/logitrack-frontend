@@ -1,0 +1,61 @@
+
+
+.card-statustique{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    gap: 10px;
+}
+.icon-box{
+    border-radius: 5px;
+}
+.card-box1{
+    border-top:2px solid rgb(68, 226, 68) ;
+}
+.card-box2{
+    border-top: 2px solid rgb(72, 72, 224);
+}
+.card-box3{
+    border-top: 2px solid rgb(224, 200, 62);
+}
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #edf2f7;
+}
+.badge-stock {
+    background: #fee2e2;
+    color: #ef4444;
+    padding: 5px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.card-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+.status {
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.en_attente {
+  background: #fff3cd;
+  color: #b7791f;
+}
+
+.livree {
+  background: #d1fae5;
+  color: #15803d;
+}
+
+.expediee {
+  background: #dbeafe;
+  color: #2563eb;
+}
