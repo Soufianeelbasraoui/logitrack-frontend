@@ -91,8 +91,8 @@ function AdminDashboard(){
                      <strong>Commandes</strong>
                 </div>
                 <strong>{countCommandes}</strong>
-               
             </div>
+
             <div className="card card-box2 p-4">
                 <div className='d-flex '>
                     <LocalShippingIcon className='me-2 text-primary bg-primary-subtle icon-box p-1'/>

@@ -1,9 +1,10 @@
 
-
+import "./AgentDashboard.css"
 function AgentDashboard(){
+
     return(
-        <div>
-          UserDashboard
+        <div className="container-agent">
+         
         </div>
     )
 }
