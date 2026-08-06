@@ -1,6 +1,6 @@
 import { Assignment, Inventory2 } from "@mui/icons-material";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import logo from "../../../../public/logo1.png";
+import logo from "../../../assets/logo1.png";
 import "./LeftPanel.css";
 
 function LeftPanel() {
@@ -21,10 +21,10 @@ function LeftPanel() {
       desc: "Traitez et suivez vos commandes efficacement.",
     },
   ];
+
   return (
     <div className="left-panel">
       <div className="left-panel-content">
-
         <div className="left-panel-logo">
           <img src={logo} alt="LogiTrack" className="logo" />
           <h2 className="left-panel-logo-text">
@@ -36,8 +36,8 @@ function LeftPanel() {
           produits et commandes.
         </p>
         <div className="left-panel-features">
-          {features.map((item, index) => (
-            <div className="feature-item" key={index}>
+          {features.map((item) => (
+            <div className="feature-item" key={item.title}>
               <div className="feature-icon">{item.icon}</div>
               <div>
                 <h6 className="feature-title">{item.title}</h6>
