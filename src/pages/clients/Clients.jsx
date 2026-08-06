@@ -80,7 +80,7 @@ if(loader){
                       <td>{item.telephone}</td>
                       <td>{item.ville}</td>
                       <td>
-                        <Link to={`/dashboard/Clients/ClientDetails/${item.id}`} className="btn-action btn-edit mx-2"><VisibilityIcon fontSize="small" /> </Link>
+                        <Link to={`/dashboard/Clients/ClientDetails/${item.id}`} className="btn-action btn-view mx-2"><VisibilityIcon fontSize="small" /> </Link>
                         <Link to={`/dashboard/Clients/modifier/${item.id}`} className="btn-action btn-edit mx-2"><EditIcon fontSize="small" /> </Link>
                     
                         <button className="btn-action btn-delete" onClick={() => handelDelet(item.id)}>

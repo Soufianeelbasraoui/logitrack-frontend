@@ -89,7 +89,7 @@ function ManagerDashboard(){
                 <strong>{enAttente}</strong>
             </div>
          </div>
-                    <div className='d-flex gap-2  mt-3'>
+            <div className='d-flex gap-2  mt-3'>
             <div className='col-md-6 card p-2'>
                
                 <h5 className='card-title mb-3'>Produits avec stock faible</h5>
