@@ -1,0 +1,19 @@
+.main-layout{
+    height: 100%;
+    display:flex;
+}
+
+.main-content{
+    flex:1;
+}
+.page-content{
+    padding:25px;
+    height:100vh;
+}
+.nav-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0d7d7;
+    padding: 8px;
+}

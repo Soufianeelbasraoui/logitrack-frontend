@@ -4,9 +4,8 @@ import { useState } from 'react';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
-import "./ManagerDashboard.css"
+import "./ManagerDashboard.css";
 import { useEffect } from 'react';
 import api from '../../../api/axios';
 import { Link } from 'react-router-dom';
@@ -95,8 +94,8 @@ function ManagerDashboard(){
                
                 <h5 className='card-title mb-3'>Produits avec stock faible</h5>
                  <div>
-                    {lowStock.map((item,index)=>(
-                        <div className='p-1 product-item'>
+                    {lowStock.map((item) => (
+                        <div className='p-1 product-item' key={item.id ?? item.nom}>
                             <div>
                               <strong>{item.nom}</strong>
                                <p>Stock:{item.quantiteStock}</p>

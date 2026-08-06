@@ -6,9 +6,10 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
+
 const schema = yup.object({
   nom: yup.string().required("Le nom est obligatoire"),
-  prenom: yup .string() .required("Le prénom est obligatoire"),
+  prenom: yup.string().required("Le prénom est obligatoire"),
   email: yup.string().email("Email invalide").required("L'email est obligatoire"),
   password: yup.string().min(4, "Minimum 4 caractères").required("Le mot de passe est obligatoire"),
   role: yup.string().required("Veuillez choisir un rôle"),
@@ -20,7 +21,7 @@ function Register() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -31,10 +32,8 @@ function Register() {
       toast.success("Compte créé avec succès.");
       navigate("/login");
     } catch (error) {
-      console.log(error);
-      toast.error(error.response?.data?.message ||"Erreur lors de l'inscription.");
+      toast.error(error.response?.data?.message || "Erreur lors de l'inscription.");
     }
-
   };
 
   return (
@@ -47,16 +46,14 @@ function Register() {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
               <div className="col-md-6 mb-3">
-                <label className="form-label"> Nom</label>
+                <label className="form-label">Nom</label>
                 <input
                   type="text"
                   className={`form-control ${errors.nom ? "is-invalid" : ""}`}
                   placeholder="Entrez votre nom"
                   {...register("nom")}
                 />
-                <div className="invalid-feedback">
-                  {errors.nom?.message}
-                </div>
+                <div className="invalid-feedback">{errors.nom?.message}</div>
               </div>
               <div className="col-md-6 mb-3">
                 <label className="form-label">Prénom</label>
@@ -66,65 +63,56 @@ function Register() {
                   placeholder="Entrez votre prénom"
                   {...register("prenom")}
                 />
-                <div className="invalid-feedback">
-                  {errors.prenom?.message}
-                </div>
+                <div className="invalid-feedback">{errors.prenom?.message}</div>
               </div>
             </div>
             <div className="mb-3">
-              <label className="form-label"> Email </label>
+              <label className="form-label">Email</label>
               <input
                 type="email"
                 className={`form-control ${errors.email ? "is-invalid" : ""}`}
                 placeholder="Entrez votre email"
                 {...register("email")}
               />
-              <div className="invalid-feedback">
-                {errors.email?.message}
-              </div>
+              <div className="invalid-feedback">{errors.email?.message}</div>
             </div>
             <div className="mb-3">
-              <label className="form-label">  Mot de passe</label>
+              <label className="form-label">Mot de passe</label>
               <input
                 type="password"
                 className={`form-control ${errors.password ? "is-invalid" : ""}`}
                 placeholder="Entrez votre mot de passe"
                 {...register("password")}
               />
-              <div className="invalid-feedback">
-                {errors.password?.message}
-              </div>
+              <div className="invalid-feedback">{errors.password?.message}</div>
             </div>
             <div className="mb-4">
-              <label className="form-label"> Rôle</label>
+              <label className="form-label">Rôle</label>
               <select
                 className={`form-select ${errors.role ? "is-invalid" : ""}`}
                 {...register("role")}
               >
                 <option value="">Choisir un rôle</option>
-                <option value="ADMIN">ADMIN </option>
-                <option value="MANAGER">  MANAGER</option>
+                <option value="ADMIN">ADMIN</option>
+                <option value="MANAGER">MANAGER</option>
                 <option value="AGENT">AGENT</option>
               </select>
-              <div className="invalid-feedback">
-                {errors.role?.message}
-              </div>
+              <div className="invalid-feedback">{errors.role?.message}</div>
             </div>
-            <button type="submit"  className="btn-register">
-              Créer un compte
+            <button type="submit" className="btn-register" disabled={isSubmitting}>
+              {isSubmitting ? "Inscription..." : "Créer un compte"}
             </button>
-
           </form>
           <div className="divider">
             <span>ou</span>
           </div>
           <p className="register-text">
-            Vous avez déjà un compte ?
-            <Link to="/login"> Se connecter</Link>
+            Vous avez déjà un compte ? <Link to="/login">Se connecter</Link>
           </p>
         </div>
       </div>
     </div>
   );
 }
+
 export default Register;

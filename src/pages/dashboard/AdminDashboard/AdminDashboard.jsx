@@ -4,11 +4,12 @@ import Inventory2Icon from '@mui/icons-material/Inventory2';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import "./AdminDashboard.css"
+import "./AdminDashboard.css";
 import { useEffect, useState } from 'react';
 import api from '../../../api/axios';
 import { Link } from 'react-router-dom';
-function AdminDashboard(){
+
+function AdminDashboard() {
     const [countClients,setCountClients]=useState(0);
     const[countProuits,setCountProduits]=useState(0);
     const[countCommandes,setCountCommandes]=useState(0);
@@ -120,8 +121,8 @@ function AdminDashboard(){
                
                 <h5 className='card-title mb-3'>Produits avec stock faible</h5>
                  <div>
-                    {lowStock.map((item,index)=>(
-                        <div className='p-1 product-item'>
+                    {lowStock.map((item) => (
+                        <div className='p-1 product-item' key={item.id ?? item.nom}>
                             <div>
                               <strong>{item.nom}</strong>
                                <p>Stock:{item.quantiteStock}</p>
