@@ -13,7 +13,7 @@ import Loader from "../../components/Loader/Loader";
 function Clients(){
     const[clients,setClients]=useState([]);
     const [loader, setLoader] = useState(true);
-      const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user"));
     
    useEffect(() => {
      api.get("/api/clients?page=0&size=10")
@@ -80,12 +80,9 @@ if(loader){
                       <td>{item.telephone}</td>
                       <td>{item.ville}</td>
                       <td>
-                        <Link to={`/dashboard/Clients/ClientDetails/${item.id}`} className="btn-action btn-edit mx-2">
-                          <VisibilityIcon fontSize="small" />
-                        </Link>
-                        <button className="btn-action btn-edit mx-2">
-                          <EditIcon fontSize="small" />
-                        </button>
+                        <Link to={`/dashboard/Clients/ClientDetails/${item.id}`} className="btn-action btn-edit mx-2"><VisibilityIcon fontSize="small" /> </Link>
+                        <Link to={`/dashboard/Clients/modifier/${item.id}`} className="btn-action btn-edit mx-2"><EditIcon fontSize="small" /> </Link>
+                    
                         <button className="btn-action btn-delete" onClick={() => handelDelet(item.id)}>
                           <DeleteIcon fontSize="small" />
                         </button>
@@ -94,8 +91,6 @@ if(loader){
                   ))}
                 </tbody>
               </table>
-
-            <Link to="" className="text-center">Voir tous les Clients</Link>
             </div>
         </main>
 
