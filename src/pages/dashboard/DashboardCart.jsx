@@ -3,6 +3,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import AgentDashboard from "./AgentDashboard/AgentDashboard";
 import "./DashboardCart.css";
+import "../Style.css"
 import ManagerDashboard from "./ManagerDashboard/ManagerDashboard";
 
 function DashboardCart() {
@@ -22,9 +23,9 @@ function DashboardCart() {
         }
    }
   return (
-    <div className="dashboard-layout">
+    <div className="main-layout">
       <Sidebar />
-      <div className="dashboard-content">
+      <div className="main-content">
         <header className="nav-container ">
             <h2 className="ms-4">LogiTrack</h2>
           <div className="me-4 ">
