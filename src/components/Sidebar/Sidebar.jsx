@@ -19,7 +19,7 @@ function Sidebar() {
   };
 
   return (
-    <aside className="sidebar-container d-flex flex-column">
+    <aside className="sidebar-container d-flex">
       <div className="sidbar-logo">
         <img src={logo} alt="LogiTrack" className="logo" />
         <h2 className="logo-text text-primary">
