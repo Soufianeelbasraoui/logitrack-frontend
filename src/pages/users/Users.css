@@ -1,0 +1,30 @@
+.card-statustique {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.card-statustique .card {
+    flex: 1;
+    min-height: 120px;
+}
+.icon-box {
+    border-radius: 5px;
+}
+.card-box1 {
+    border-top: 2px solid rgb(68, 226, 68);
+}
+.card-box2 {
+    border-top: 2px solid rgb(72, 72, 224);
+}
+.card-box3 {
+    border-top: 2px solid rgb(224, 200, 62);
+}
+.card-box4 {
+    border-top: 2px solid rgb(40, 180, 220);
+}
+.nav-client{
+    display: flex;
+    justify-content: space-between;
+}

@@ -40,7 +40,7 @@ function Sidebar() {
           <NavLink to="/dashboard/Commandes" className="nav-link mt-3 sidebar-nav-link d-flex align-items-center rounded-3">
             <PendingActionsIcon className="sidebar-icon me-2" />Commandes
           </NavLink>
-          <NavLink to="/dashboard/Utilisateurs" className="nav-link mt-3 sidebar-nav-link d-flex align-items-center rounded-3">
+          <NavLink to="/dashboard/users" className="nav-link mt-3 sidebar-nav-link d-flex align-items-center rounded-3">
             <GroupIcon className="sidebar-icon me-2" />Utilisateurs
           </NavLink>
           <NavLink to="/dashboard/Profile" className="nav-link mt-3 sidebar-nav-link d-flex align-items-center rounded-3">

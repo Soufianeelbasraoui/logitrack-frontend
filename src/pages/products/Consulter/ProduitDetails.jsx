@@ -12,11 +12,9 @@ function ProduitDetails() {
   useEffect(() => {
     api.get(`/api/products/${id}`).then((res) => {
         setProduit(res.data);
-      })
-     .catch((err) => {
+      }).catch((err) => {
         console.log(err);
-      })
-      .finally(() => {
+      }).finally(() => {
         setLoader(false);
       });
 
@@ -33,18 +31,13 @@ function ProduitDetails() {
     <div className="main-layout">
       <Sidebar />
       <div className="main-content">
-
         <header className="nav-container">
-
           <h2 className="ms-4">LogiTrack</h2>
-
           <div className="me-4">
             <strong>{user?.nom}</strong>
             <p>{user?.role}</p>
           </div>
-
         </header>
-
         <main className="page-content">
           <div className="card p-4">
             <h3>Détails du produit</h3>
