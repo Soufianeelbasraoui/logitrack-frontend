@@ -1,0 +1,30 @@
+.unauthorized-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+.unauthorized-container h3 {
+  font-size: 100px;
+  font-weight: 700;
+  color: #940d0d;
+  margin: 0;
+}
+.unauthorized-container h2 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #940d0d;
+  margin: 10px 0;
+}
+.unauthorized-container p {
+  color: #777;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+.unauthorized-container .btn {
+  padding: 10px 25px;
+  border-radius: 6px;
+}

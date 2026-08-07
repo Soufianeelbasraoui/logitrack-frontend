@@ -6,7 +6,7 @@ function RoleGuard({ children, roles }) {
     return <Navigate to="/login" replace />;
   }
   if (!roles.includes(user.role)) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/unauthorized"  />;
   }
   return children;
 }

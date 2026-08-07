@@ -69,8 +69,8 @@ if(loader){
                 <Link className="btn-ajouter" to="/dashboard/Clients/ajouter">Ajouter une Client</Link>
                 
             </div>
-            <div className="card mt-3">
-            
+            <div className="card mt-3 p-2">
+               <h5>Liste des clients</h5>
               <table className="table">
                 <thead>
                   <tr>
