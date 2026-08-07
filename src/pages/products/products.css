@@ -1,0 +1,4 @@
+.nav-produits{
+    display: flex;
+    justify-content: space-between;
+}

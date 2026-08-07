@@ -11,6 +11,7 @@ import Modifier from "./pages/clients/Modifier/Modifier";
 import ProtectedRoute from "./components/ProtectedRoute";
 import RoleGuard from "./components/RoleGuard";
 import NotFound from "./pages/NotFound/NotFound";
+import Products from "./pages/products/products";
 
 function App() {
   return (
@@ -45,13 +46,23 @@ function App() {
         </ProtectedRoute>
         }/>
         <Route path="/dashboard/Clients/modifier/:id" 
-        element={
+          element={
           <ProtectedRoute>
             <RoleGuard roles={["ADMIN", "MANAGER"]}>
               <Modifier/>
             </RoleGuard>
           </ProtectedRoute>
         }/>
+        <Route  path="/dashboard/products"
+          element={
+            <ProtectedRoute>
+              <RoleGuard roles={["ADMIN", "MANAGER", "AGENT"]}>
+                <Products/>
+              </RoleGuard>
+            </ProtectedRoute>
+          }
+          
+        />
         <Route path="*" element={<NotFound/>} />
       </Routes>
       <ToastContainer position="top-right" autoClose={2000} theme="colored" />
