@@ -52,6 +52,7 @@ function AgentDashboard(){
                 </table>
             </div>
             <div className="col-md-6 card p-2">
+                <h5>Liste des produits</h5>
                 <table className="table">
                     <thead>
                         <tr>

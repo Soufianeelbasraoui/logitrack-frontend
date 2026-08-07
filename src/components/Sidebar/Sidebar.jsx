@@ -34,7 +34,7 @@ function Sidebar() {
           <NavLink to="/dashboard/Clients" className="nav-link mt-3 sidebar-nav-link d-flex align-items-center rounded-3">
             <PeopleIcon className="sidebar-icon me-2" />Clients
           </NavLink>
-          <NavLink to="/dashboard/Produits" className="nav-link mt-3 sidebar-nav-link d-flex align-items-center rounded-3">
+          <NavLink to="/dashboard/Products" className="nav-link mt-3 sidebar-nav-link d-flex align-items-center rounded-3">
             <IntegrationInstructionsIcon className="sidebar-icon me-2" />Produits
           </NavLink>
           <NavLink to="/dashboard/Commandes" className="nav-link mt-3 sidebar-nav-link d-flex align-items-center rounded-3">

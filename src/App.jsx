@@ -11,6 +11,12 @@ import Modifier from "./pages/clients/Modifier/Modifier";
 import ProtectedRoute from "./components/ProtectedRoute";
 import RoleGuard from "./components/RoleGuard";
 import NotFound from "./pages/NotFound/NotFound";
+import Products from "./pages/products/Products";
+import AjouterProduits from "./pages/products/Ajouter/AjouterProduits";
+import ProduitDetails from "./pages/products/Consulter/ProduitDetails";
+import Unauthorized from "./pages/Unauthorized/Unauthorized";
+import ModifierProduit from "./pages/products/Modifier/ModifierProduit";
+
 
 function App() {
   return (
@@ -19,9 +25,10 @@ function App() {
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/unauthorized" element={<Unauthorized/>}/>
         <Route path="/dashboard" element={<ProtectedRoute><DashboardCart /></ProtectedRoute>} />
         <Route path="/dashboard/Clients" 
-        element={
+         element={
           <ProtectedRoute>
             <RoleGuard roles={["ADMIN", "MANAGER", "AGENT"]}>
               <Clients />
@@ -45,13 +52,33 @@ function App() {
         </ProtectedRoute>
         }/>
         <Route path="/dashboard/Clients/modifier/:id" 
-        element={
+          element={
           <ProtectedRoute>
             <RoleGuard roles={["ADMIN", "MANAGER"]}>
               <Modifier/>
             </RoleGuard>
           </ProtectedRoute>
         }/>
+        <Route  path="/dashboard/Products"
+          element={
+            <ProtectedRoute>
+              <RoleGuard roles={["ADMIN", "MANAGER", "AGENT"]}>
+                <Products/>
+              </RoleGuard>
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/dashboard/Products/ajouterProduits" 
+        element={
+          <ProtectedRoute>
+            <RoleGuard roles={["ADMIN", "MANAGER"]}>
+              <AjouterProduits/>
+            </RoleGuard>
+          </ProtectedRoute>
+        }
+        />
+        <Route path="/dashboard/Products/ProduitDetails/:id" element={<ProtectedRoute><RoleGuard roles={["ADMIN", "MANAGER"]}><ProduitDetails/></RoleGuard></ProtectedRoute>}/>
+        <Route path="/dashboard/Products/modifierProduit/:id" element={<ProtectedRoute><RoleGuard roles={["ADMIN", "MANAGER"]}><ModifierProduit/></RoleGuard></ProtectedRoute>}/>
         <Route path="*" element={<NotFound/>} />
       </Routes>
       <ToastContainer position="top-right" autoClose={2000} theme="colored" />
