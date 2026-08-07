@@ -32,11 +32,9 @@ function ClientDetails() {
   return (
     <div className="main-layout">
       <Sidebar />
-
       <div className="main-content">
         <header className="nav-container">
           <h2 className="ms-4">LogiTrack</h2>
-
           <div className="me-4">
             <strong>{user?.nom}</strong>
             <p>{user?.role}</p>
@@ -47,7 +45,6 @@ function ClientDetails() {
           <div className="card p-4">
             <h3>Détails du client</h3>
             <hr />
-
             <p><strong>Nom :</strong> {client.nom}</p>
             <p><strong>Email :</strong> {client.email}</p>
             <p><strong>Téléphone :</strong> {client.telephone}</p>

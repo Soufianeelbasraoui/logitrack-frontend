@@ -8,7 +8,6 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import Loader from "../../components/Loader/Loader";
-
 import PaginationComponent from "../../components/Pagination/Pagination";
 
 function Products() {
@@ -19,30 +18,31 @@ function Products() {
   const[loader,setLoader]=useState(true);
 
   const[categorie,setCategorie]=useState([]);
+
   useEffect(()=>{
-     try{
+      try{
        api.get(`/api/products?page=${page-1}&size=10`).then((res)=>{
           setProducts(res.data.content);
           setTotalPages(res.data.totalPages)
           console.log(res.data);
-     })
-     }catch(err){
-      console.log(err);
-     }finally{
-        setLoader(false)
-     }
-  },[page]);
-  const handlePageChange=(newPage)=>{
-        setPage(newPage);
-      }
-      if(loader){
-        return<Loader/>
-      }
+      })}catch(err){
+          console.log(err);
+        }finally{
+         setLoader(false)
+        }
+      },[page]);
+        const handlePageChange=(newPage)=>{
+            setPage(newPage);
+         }
       const handelDelet=async(id)=>{
-        await  api.delete(`/api/products/${id}`).then((res)=>{
-          setProducts(products.filter((item)=>item.id!==id));
-        })
+            await  api.delete(`/api/products/${id}`).then((res)=>{
+              setProducts(products.filter((item)=>item.id!==id));
+            })
       }
+
+  if(loader){
+        return<Loader/>
+    }
   return (
     <div className="main-layout">
       <Sidebar />
@@ -61,7 +61,7 @@ function Products() {
               Ajouter Produit
             </Link>
           </div>
-          <div className="card mt-2 p-3 ">
+          <div className="card mt-2 p-3">
             <div className="card-search">
             <div>
               <label>Categorie</label>
