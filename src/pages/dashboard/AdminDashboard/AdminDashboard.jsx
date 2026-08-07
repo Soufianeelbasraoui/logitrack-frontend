@@ -31,7 +31,6 @@ function AdminDashboard() {
         }catch(error){
             console.log(error);
         };
-
         try{
          api.get("/api/commandes/count").then((res)=>{
             setCountCommandes(res.data);
@@ -39,7 +38,6 @@ function AdminDashboard() {
         }catch(error){
             console.log(error)
         }
-
         api.get("/api/commandes/en-attente").then((res)=>{
             setEnAttente(res.data)
         })
@@ -49,7 +47,6 @@ function AdminDashboard() {
         api.get("/api/commandes/livree").then((res)=>{
            setLivree(res.data);
         })
-
     },[])
     useEffect(()=>{
         api.get("/api/products/low-stock?page=0&size=3").then((res)=>{

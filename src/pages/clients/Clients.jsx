@@ -9,16 +9,21 @@ import "./clients.css"
 import "../Style.css"
 import { Link} from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
+import PaginationComponent from "../../components/Pagination/Pagination";
 
 function Clients(){
     const[clients,setClients]=useState([]);
     const [loader, setLoader] = useState(true);
+
+    const [page,setPage]=useState(1);
+    const [totalPages,setTotalPages]=useState(0);
     const user = JSON.parse(localStorage.getItem("user"));
     
    useEffect(() => {
-     api.get("/api/clients?page=0&size=10")
+     api.get(`/api/clients?page=${page-1}&size=10`)
     .then((res) => {
       setClients(res.data.content);
+      setTotalPages(res.data.totalPages)
     })
     .catch((err) => {
       console.log(err);
@@ -26,7 +31,7 @@ function Clients(){
     .finally(() => {
       setLoader(false);
     });
-   }, []);
+   }, [page]);
   const handelDelet = async (id) => {
   try {
     await api.delete(`/api/clients/${id}`);
@@ -35,6 +40,11 @@ function Clients(){
     console.log(err);
   }
 };
+
+const handlePageChange = (newPage) => {
+  setPage(newPage);
+};
+
 if(loader){
   return <Loader/>
 }
@@ -80,7 +90,7 @@ if(loader){
                       <td>{item.telephone}</td>
                       <td>{item.ville}</td>
                       <td>
-                        <Link to={`/dashboard/Clients/ClientDetails/${item.id}`} className="btn-action btn-edit mx-2"><VisibilityIcon fontSize="small" /> </Link>
+                        <Link to={`/dashboard/Clients/ClientDetails/${item.id}`} className="btn-action btn-view mx-2"><VisibilityIcon fontSize="small" /> </Link>
                         <Link to={`/dashboard/Clients/modifier/${item.id}`} className="btn-action btn-edit mx-2"><EditIcon fontSize="small" /> </Link>
                     
                         <button className="btn-action btn-delete" onClick={() => handelDelet(item.id)}>
@@ -91,6 +101,11 @@ if(loader){
                   ))}
                 </tbody>
               </table>
+              <PaginationComponent
+                   page={page}
+                   totalPages={totalPages}
+                   onPageChange={handlePageChange}
+              />
             </div>
         </main>
 

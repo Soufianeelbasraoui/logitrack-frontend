@@ -10,6 +10,7 @@ import ClientDetails from "./pages/clients/Consulter/ClientDetails";
 import Modifier from "./pages/clients/Modifier/Modifier";
 import ProtectedRoute from "./components/ProtectedRoute";
 import RoleGuard from "./components/RoleGuard";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -51,7 +52,7 @@ function App() {
             </RoleGuard>
           </ProtectedRoute>
         }/>
-        <Route path="*" element={<Navigate to="/login" />} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
       <ToastContainer position="top-right" autoClose={2000} theme="colored" />
     </BrowserRouter>
