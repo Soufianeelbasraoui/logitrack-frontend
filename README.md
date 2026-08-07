@@ -1,16 +1,92 @@
-# React + Vite
+# LogiTrack – Application Web de Gestion Logistique
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## 1. Nom du projet
 
-Currently, two official plugins are available:
+**Nom du projet :** LogiTrack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Type :** Application web de gestion logistique
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# 2. Présentation du projet
 
-## Expanding the Oxlint configuration
+LogiTrack est une application web destinée à faciliter la gestion des données liées aux opérations logistiques.  
+L'application permet aux utilisateurs de gérer les clients et les produits depuis une interface web centralisée.  
+Elle propose également la pagination, le tri, la recherche et le filtrage des produits.  
+L'accès aux fonctionnalités est contrôlé selon le rôle de l'utilisateur.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+---
+
+# 3. Problématique
+
+La gestion des clients et des produits peut devenir difficile lorsque le volume de données augmente et que les utilisateurs doivent rechercher rapidement une information.
+
+LogiTrack propose une solution centralisée permettant de gérer facilement les données logistiques à travers une interface web simple et organisée.
+
+L'application permet notamment de consulter, ajouter, modifier et supprimer les données tout en contrôlant les accès selon les rôles des utilisateurs.
+
+---
+
+# 4. Fonctionnalités principales
+
+- Créer un compte utilisateur.
+- Se connecter à l'application.
+- Gérer les clients.
+- Ajouter, consulter, modifier et supprimer un client.
+- Gérer les produits.
+- Ajouter, consulter, modifier et supprimer un produit.
+- Rechercher les produits par catégorie.
+- Rechercher les produits selon leur prix.
+- Paginer les listes de données.
+- Trier les produits.
+- Contrôler l'accès aux fonctionnalités selon le rôle de l'utilisateur.
+- Gérer les erreurs HTTP avec Axios.
+- Rediriger l'utilisateur vers la page de connexion en cas d'expiration ou d'absence du token.
+
+---
+
+# 5. Technologies utilisées
+
+| Technologie | Utilisation dans le projet |
+|---|---|
+| React | Développement de l'interface utilisateur |
+| Vite | Création et lancement du frontend |
+| JavaScript | Logique de l'application frontend |
+| React Router | Navigation entre les pages |
+| Axios | Communication avec l'API REST |
+| Bootstrap | Mise en forme de l'interface |
+| Material UI | Icônes et composants d'interface |
+| React Hook Form | Gestion des formulaires |
+| Yup | Validation des formulaires |
+| React Toastify | Affichage des notifications |
+| Java | Développement du backend |
+| Spring Boot | Création de l'API REST |
+| Spring Security | Authentification et autorisation |
+| Spring Data JPA | Gestion de l'accès aux données |
+| MySQL | Stockage des données |
+| Maven | Gestion des dépendances backend |
+| Git | Gestion des versions |
+| GitHub | Hébergement du code source |
+
+---
+
+# 6. Installation et lancement
+
+## 6.1 Prérequis
+
+Pour utiliser le projet, vous devez disposer de :
+
+- Node.js
+- npm
+- Java JDK 21
+- Maven
+- MySQL
+- Git
+- Un IDE comme Visual Studio Code ou IntelliJ IDEA
+
+---
+
+## 6.2 Cloner le dépôt
+
+```bash
+git clone LIEN_DU_DEPOT_GITHUB
