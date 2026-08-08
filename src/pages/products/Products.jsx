@@ -16,6 +16,9 @@ function Products() {
   const[page,setPage]=useState(1);
   const[totalPages,setTotalPages]=useState(0);
   const[loader,setLoader]=useState(true);
+  const[serch,setSerchNom]=useState("");
+  const[serchCategorie,setSerchCategorie]=useState("");
+  const[sortBy,setSortBy]=useState("id");
 
   const[categorie,setCategorie]=useState([]);
 
@@ -31,12 +34,31 @@ function Products() {
          setLoader(false)
         }
       },[page]);
-        const handlePageChange=(newPage)=>{
+
+      const handelSearch=()=>{
+        if(serchCategorie.trim()==""){
+          return;
+        }
+        api.get(`/api/products/search/categorie?categorie=${serchCategorie}&page=${page-1}&size=10`).then((res)=>{
+            setProducts(res.data.content);
+        })
+      }
+
+     const handlePageChange=(newPage)=>{
             setPage(newPage);
          }
       const handelDelet=async(id)=>{
             await  api.delete(`/api/products/${id}`).then((res)=>{
               setProducts(products.filter((item)=>item.id!==id));
+            })
+      }
+
+      const handleSort=(e)=>{
+            api.get(`/api/products?page=${page-1}&size=10&sortBy=${sortBy}`).then((res)=>{
+              setProducts(res.data.content);
+              setTotalPages(res.data.totalPages)
+            }).catch((err)=>{
+              console.log(err);
             })
       }
 
@@ -64,18 +86,19 @@ function Products() {
           <div className="card mt-2 p-3">
             <div className="card-search">
             <div>
-              <label>Categorie</label>
-             <select>
-              <option value="">Tous les Categorie </option>
+             <label>Tri par: </label>
+             <select value={sortBy} onClick={handleSort} onChange={(e)=>setSortBy(e.target.value)}>
+              <option value="id">Tri par défau</option>
+              <option value="nom">Nom</option>
+              <option value="prix">Prix</option>
+              <option value="quantiteStock">Quantité en stock</option>
               </select>
             </div>
-            <div>
-              <label>Prix</label>
-              <select>
-                <option value="">Tous les Statut</option>
-              </select>
-             </div>
-              <input type="text" />
+
+              <div className="d-flex gap-2">
+                <input type="text" placeholder="Rechercher une catégorie..."  value={serchCategorie} onChange={(e)=>setSerchCategorie(e.target.value)}/>
+                <button className=" btn-search" onClick={handelSearch}>search</button>
+              </div>
             </div>
           
           </div>
@@ -94,7 +117,11 @@ function Products() {
                   </tr>
                 </thead>
                 <tbody>
-                  {products.map((item)=>(
+                  {products.length==0?(
+                    <tr>
+                       <td colSpan="6" className="text-center">Aucun produit trouvé.</td>
+                    </tr>
+                  ):(products.map((item)=>(
                     <tr key={item.id}>
                       <td>{item.id}</td>
                       <td>{item.nom}</td>
@@ -110,8 +137,8 @@ function Products() {
 
                       </td>
                     </tr>
-                  ))}
-
+                  )) 
+                  )}
                 </tbody>
             </table>
             <PaginationComponent

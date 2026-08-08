@@ -8,12 +8,12 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import api from "../../api/axios";
-import "./Users.css";
+import "./UserList.css";
 import PaginationComponent from "../../components/Pagination/Pagination";
 import Loader from "../../components/Loader/Loader";
 import { Link } from "react-router-dom";
 
-function User() {
+function UserList() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [countUser, setCountUser] = useState(0);
   const [countAdmin, setCountAdmin] = useState(0);
@@ -65,6 +65,13 @@ function User() {
   const handlePageChange=(newPage)=>{
     setPage(newPage);
   }
+
+const handelDelet=async(id)=>{
+       await  api.delete(`/api/users/${id}`).then((res)=>{
+        setUtilisateur(utilisateur.filter((item)=>(item.id!==id)))
+      })
+}
+
   if(loader){
     return <Loader/>
   }
@@ -82,7 +89,7 @@ function User() {
         <main className="page-content">
           <div className="nav-client">
             <h5>Utilisateurs</h5>
-            <Link to="/dashboard/users/ajouterUser" className="btn-ajouter">Ajouter user</Link>
+            <Link to="/dashboard/userList/userForm" className="btn-ajouter">Ajouter user</Link>
 
           </div>
           <div className="card-statustique mt-2">
@@ -121,6 +128,7 @@ function User() {
                     <tr>
                         <td>#</td>
                         <td>nom</td>
+                        <td>pénom</td>
                         <td>email</td>
                         <td>Role</td>
                         <td>Action</td>
@@ -131,12 +139,13 @@ function User() {
                   <tr key={item.id}>
                     <td>{item.id}</td>
                     <td>{item.nom}</td>
+                    <td>{item.prenom}</td>
                     <td>{item.email}</td>
                     <td>{item.role}</td>
                     <td>
-                      <Link to="/" className="btn-action1 btn-view1 mx-2"><VisibilityIcon fontSize="small"/></Link>
+                      <Link to={`/dashboard/userList/userDetails/${item.id}`} className="btn-action1 btn-view1 mx-2"><VisibilityIcon fontSize="small"/></Link>
                       <Link to={``} className="text-warning m-2"><EditIcon fontSize="small"/></Link>
-                      <button className="btn text-danger"><DeleteIcon fontSize="small"/></button>
+                      <button className="btn text-danger" onClick={()=>handelDelet(item.id)}><DeleteIcon fontSize="small"/></button>
                     </td>
                   </tr>
                 ))}
@@ -156,4 +165,4 @@ function User() {
   );
 }
 
-export default User;
+export default UserList;
