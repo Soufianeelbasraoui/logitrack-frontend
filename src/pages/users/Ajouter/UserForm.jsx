@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { toast } from "react-toastify";
 import api from "../../../api/axios";
-import "./AjouterUser.css"
+import "./UserForm.css"
 
 const schema=yup.object({
     nom:yup.string().required("le nom est obligatoire"),
@@ -16,7 +16,7 @@ const schema=yup.object({
 
 })
 
-function AjouterUser(){
+function UserForm(){
     const navigate=useNavigate();
     const user=JSON.parse(localStorage.getItem("user"))
 
@@ -81,7 +81,7 @@ function AjouterUser(){
                              <small className="text-danger">{errors.role?.message}</small>
 
                         </div>
-                        <button type="button" className="btn-annuler me-3" onClick={() => navigate("/dashboard/users")} > Annuler</button>
+                        <button type="button" className="btn-annuler me-3" onClick={() => navigate("/dashboard/userList")} > Annuler</button>
                         <button type="submit"className="btn-enregistrer" >Enregistrer </button>
                     </form>
                     </div>
@@ -90,4 +90,4 @@ function AjouterUser(){
         </div>
     )
 }
-export default AjouterUser;
+export default UserForm;
