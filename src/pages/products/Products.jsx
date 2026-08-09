@@ -3,6 +3,7 @@ import "../style.css";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { useEffect, useState } from "react";
@@ -16,7 +17,7 @@ function Products() {
   const[page,setPage]=useState(1);
   const[totalPages,setTotalPages]=useState(0);
   const[loader,setLoader]=useState(true);
-  const[serch,setSerchNom]=useState("");
+
   const[serchCategorie,setSerchCategorie]=useState("");
   const[sortBy,setSortBy]=useState("id");
 
@@ -141,11 +142,7 @@ function Products() {
                   )}
                 </tbody>
             </table>
-            <PaginationComponent
-            page={page}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-            />
+            <PaginationComponent  page={page} totalPages={totalPages}  onPageChange={handlePageChange}/>
           </div>
         </main>
 

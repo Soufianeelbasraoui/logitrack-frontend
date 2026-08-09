@@ -4,10 +4,8 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 
 function NotFound() {
   return (
-    <div className="main-layout">
-      <Sidebar />
-
-      <div className="main-content">
+    <div className="containe">
+      <div className="main">
         <div className="not-found-container">
           <h3>404</h3>
           <h2>Page introuvable</h2>

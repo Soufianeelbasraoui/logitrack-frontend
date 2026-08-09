@@ -144,7 +144,6 @@ const handelDelet=async(id)=>{
                     <td>{item.role}</td>
                     <td>
                       <Link to={`/dashboard/userList/userDetails/${item.id}`} className="btn-action1 btn-view1 mx-2"><VisibilityIcon fontSize="small"/></Link>
-                      <Link to={``} className="text-warning m-2"><EditIcon fontSize="small"/></Link>
                       <button className="btn text-danger" onClick={()=>handelDelet(item.id)}><DeleteIcon fontSize="small"/></button>
                     </td>
                   </tr>
