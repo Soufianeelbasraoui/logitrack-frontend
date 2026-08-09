@@ -40,8 +40,9 @@ function Orders(){
     if(loader){
         return <Loader/>
     }
-    const handelDelet=(id)=>{
+    const handelDelet=async(id)=>{
          try{
+             await api.delete(`/api/commandes/${id}`);
              setOrders(orders.filter((order)=>order.id!==id));
              toast.success("commande delet avec successe");
          }catch(err){
