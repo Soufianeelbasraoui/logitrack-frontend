@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import api from "../../../api/axios";
+import UserInfo from "../../../components/UserInfo/UserInfo";
 
 const schema = yup.object({
     produitId: yup
@@ -22,14 +23,10 @@ const schema = yup.object({
 });
 
 function AddProductToOrder() {
-
     const { orderId } = useParams();
     const navigate = useNavigate();
 
-    const user = JSON.parse(localStorage.getItem("user"));
-
     const [products, setProducts] = useState([]);
-
     const {
         register,
         handleSubmit,
@@ -52,50 +49,22 @@ function AddProductToOrder() {
     }, []);
 
     const onSubmit = async (data) => {
-
         try {
-
-            await api.post(
-                `/api/commandes/${orderId}/products`,
-                {
-                    produitId: Number(data.produitId),
-                    quantite: Number(data.quantite),
-                }
-            );
-
+            await api.post(`/api/commandes/${orderId}/products`,data);
             toast.success("Produit ajouté à la commande");
-
             navigate("/dashboard/Orders");
-
         } catch (err) {
-
             console.log(err);
-
             toast.error("Erreur lors de l'ajout du produit");
         }
     };
-
     return (
         <div className="main-layout">
-
             <Sidebar />
-
             <div className="main-content">
-
                 <header className="nav-container">
-
-                    <h2 className="ms-4">
-                        LogiTrack
-                    </h2>
-
-                    <div className="ms-4">
-
-                        <strong>{user?.nom}</strong>
-
-                        <p>{user?.role}</p>
-
-                    </div>
-
+                    <h2 className="ms-4">LogiTrack  </h2>
+                    <UserInfo/>
                 </header>
 
                 <main className="page-content">

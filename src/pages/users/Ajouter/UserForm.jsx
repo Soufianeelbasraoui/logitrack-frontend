@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { toast } from "react-toastify";
 import api from "../../../api/axios";
 import "./UserForm.css"
+import UserInfo from "../../../components/UserInfo/UserInfo";
 
 const schema=yup.object({
     nom:yup.string().required("le nom est obligatoire"),
@@ -18,7 +19,6 @@ const schema=yup.object({
 
 function UserForm(){
     const navigate=useNavigate();
-    const user=JSON.parse(localStorage.getItem("user"))
 
   const {
       register,
@@ -43,11 +43,7 @@ function UserForm(){
             <div className="main-content">
                <header className="nav-container">
                       <h2 className="ms-4">LogiTrack</h2>
-                       <div className="me-4">
-                         <strong>{user?.nom}</strong>
-                      
-                         <p>{user?.role}</p>
-                       </div>
+                       <UserInfo/>
                 </header>
                 <main className="page-content">
                   <div className="card card-form">

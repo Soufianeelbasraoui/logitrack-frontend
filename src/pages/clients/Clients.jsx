@@ -10,6 +10,7 @@ import "../Style.css"
 import { Link} from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import PaginationComponent from "../../components/Pagination/Pagination";
+import UserInfo from "../../components/UserInfo/UserInfo";
 
 function Clients(){
     const[clients,setClients]=useState([]);
@@ -17,7 +18,8 @@ function Clients(){
 
     const [page,setPage]=useState(1);
     const [totalPages,setTotalPages]=useState(0);
-    const user = JSON.parse(localStorage.getItem("user"));
+    const[serch,setSearch]=useState("");
+
     
    useEffect(() => {
      api.get(`/api/clients?page=${page-1}&size=10`)
@@ -45,6 +47,12 @@ const handlePageChange = (newPage) => {
   setPage(newPage);
 };
 
+const handelSerch=()=>{
+  api.get(`/api/clients/search?nom=${serch}&page=${page-1}&size=10`).then((res)=>{
+    setClients(res.data.content);
+    setTotalPages(res.data.totalPages);
+  })
+}
 if(loader){
   return <Loader/>
 }
@@ -55,10 +63,7 @@ if(loader){
       <div className="main-content">
         <header className="nav-container ">
             <h2 className="ms-4">LogiTrack</h2>
-          <div className="me-4 ">
-            <strong>{user?.nom}</strong>
-            <p>{user?.role}</p>
-          </div>
+            <UserInfo/>
         </header>
         <main className="page-content">
             <div className="nav-cleint">
@@ -67,11 +72,22 @@ if(loader){
                   <h5>Clients</h5>
                 </div>
                 <Link className="btn-ajouter" to="/dashboard/Clients/ajouter">Ajouter une Client</Link>
-                
+            </div>
+            <div className="card p-4">
+              <div className="d-flex gap-2">
+                <input type="text" value={serch} onChange={(e)=>setSearch(e.target.value)}/>
+                <button onClick={handelSerch}>search</button>
+              </div>
+
             </div>
             <div className="card mt-3 p-2">
                <h5>Liste des clients</h5>
-              <table className="table">
+               {clients.length==0?(
+                <div className="card p-4">
+                    <p className="text-center">Acune Clients</p>
+                </div>
+               ):(
+                <table className="table">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -102,6 +118,8 @@ if(loader){
                   ))}
                 </tbody>
               </table>
+               )}
+             
               <PaginationComponent
                    page={page}
                    totalPages={totalPages}

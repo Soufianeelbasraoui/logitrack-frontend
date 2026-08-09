@@ -4,20 +4,16 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "react-toastify";
-
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import api from "../../../api/axios";
-
+import UserInfo from "../../../components/UserInfo/UserInfo";
 const schema = yup.object({
   clientId: yup.number().typeError("Veuillez sélectionner un client").required("Le client est obligatoire"),
     statut: yup.string().required("Le statut est obligatoire"),
 });
-
 function OrderForm() {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
   const [clients, setClients] = useState([]);
-
   const {
     register,
     handleSubmit,
@@ -26,7 +22,6 @@ function OrderForm() {
     resolver: yupResolver(schema),
     defaultValues: { statut: "EN_ATTENTE"},
   });
-
   useEffect(() => {
     api.get("/api/clients?page=0&size=10").then((res) => {
         setClients(res.data.content);
@@ -36,7 +31,6 @@ function OrderForm() {
         toast.error("Impossible de charger les clients");
       });
   }, []);
-
   const onSubmit = async (data) => {
     try {
       await api.post("/api/commandes",data);
@@ -53,10 +47,7 @@ function OrderForm() {
       <div className="main-content">
         <header className="nav-container">
           <h2 className="ms-4">LogiTrack</h2>
-          <div className="me-4">
-            <strong>{user?.nom}</strong>
-            <p>{user?.role}</p>
-          </div>
+           <UserInfo/>
         </header>
         <main className="page-content">
           <div className="card card-form">

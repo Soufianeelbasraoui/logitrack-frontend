@@ -6,6 +6,7 @@ import api from "../../../api/axios";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
+import { jwtDecode } from "jwt-decode";
 
 const schema = yup.object({
   email: yup.string().email("Email invalide").required("L'email est obligatoire"),
@@ -26,19 +27,11 @@ function Login() {
   const onSubmit = async (data) => {
     try {
       const response = await api.post("/auth/login", data);
-
       if (!response.data?.token) {
         throw new Error("Token absent dans la réponse");
       }
-
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          role: response.data.role,
-          nom: response.data.nom,
-        })
-      );
+      localStorage.setItem("token", response.data.token); 
+        
 
       toast.success("Connexion réussie");
       navigate("/dashboard");

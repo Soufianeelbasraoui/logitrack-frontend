@@ -11,9 +11,10 @@ import { Toast } from "bootstrap";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader/Loader";
 import PaginationComponent from "../../components/Pagination/Pagination";
+import UserInfo from "../../components/UserInfo/UserInfo";
 
 function Orders(){
-    const user=JSON.parse(localStorage.getItem("user"));
+    
     const[orders,setOrders]=useState([]);
     const[loader,setLoader]=useState(true)
     const[sortBy,setSortBy]=useState("id");
@@ -39,8 +40,9 @@ function Orders(){
     if(loader){
         return <Loader/>
     }
-    const handelDelet=(id)=>{
+    const handelDelet=async(id)=>{
          try{
+             await api.delete(`/api/commandes/${id}`);
              setOrders(orders.filter((order)=>order.id!==id));
              toast.success("commande delet avec successe");
          }catch(err){
@@ -92,10 +94,7 @@ function Orders(){
             <div className="main-content">
                 <header className="nav-container">
                     <h2 className="ms-4">LogiTrack</h2>
-                    <div className="ms-4">
-                        <strong>{user.nom}</strong>
-                        <p>{user.role}</p>
-                    </div>
+                    <UserInfo/>
                 </header>
                 <main className="page-content">
                      <div className="nav-client">
