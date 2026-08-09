@@ -40,10 +40,13 @@ function Orders(){
         return <Loader/>
     }
     const handelDelet=(id)=>{
-        setOrders(orders.filter((order)=>order.id!==id));
-        toast.success("commande delet avec successe");
+         try{
+             setOrders(orders.filter((order)=>order.id!==id));
+             toast.success("commande delet avec successe");
+         }catch(err){
+            console.log(err);
+         }
     }
-
     const handelFilter=()=>{
         if(status==""){
             return;
@@ -69,7 +72,7 @@ function Orders(){
     if (searchClient.trim() === "") {  
         api.get("/api/commandes?page=0&size=10").then((res) => {
                 setOrders(res.data.content);
-            });
+          });
         return;
     }
 
@@ -136,7 +139,7 @@ function Orders(){
                                        <th>Client</th>
                                        <th>Statut</th>
                                        <th>Date</th>
-                                       <th>update Status</th>
+                                       <th>Modifer Status</th>
                                        <th>Action</th>
                                     </tr>
                                 </thead>
@@ -147,11 +150,12 @@ function Orders(){
                                           <td>{item.nomClient}</td>
                                           <td><span className={`status ${item.statut.toLowerCase()}`}>{item.statut} </span></td>
                                           <td>{item.dateCommande}</td>
-                                          <td>updateStatus</td>
+                                          <td>
+                                            <Link to={`/dashboard/Orders/modifierStatus/${item.id}`} className="nav-link">Modifer</Link>
+                                          </td>
                                           <td>
                                             <Link to={`/dashboard/Orders/add-product/${item.id}`} className="btn-action btn-add mx-2" title="Ajouter un produit" ><AddShoppingCartIcon /> </Link>
                                             <Link to={`/dashboard/Orders/show/${item.id}`} className="btn-action btn-view mx-2"><VisibilityIcon/></Link>
-                                            <Link className="btn-action btn-edit mx-2"><EditIcon/></Link>
                                             <button className="btn-action btn-delete" onClick={()=>handelDelet(item.id)}><DeleteIcon/></button>
                                             
                                           </td>
