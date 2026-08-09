@@ -5,13 +5,14 @@ import AgentDashboard from "./AgentDashboard/AgentDashboard";
 import "./DashboardCart.css";
 import "../Style.css"
 import ManagerDashboard from "./ManagerDashboard/ManagerDashboard";
+import { jwtDecode } from "jwt-decode";
 
 function DashboardCart() {
-   const user = JSON.parse(localStorage.getItem("user"));
-   const role = user?.role;
+   const token = localStorage.getItem("token");
+   const user =jwtDecode(token) 
 
    const renderDashboard=()=>{
-        switch(role){
+        switch(user?.role){
           case "ADMIN":
            return<AdminDashboard/>
           case "MANAGER":
@@ -30,7 +31,7 @@ function DashboardCart() {
             <h2 className="ms-4">LogiTrack</h2>
           <div className="me-4 ">
              <strong>{user?.nom}</strong>
-            <p>{role}</p>
+            <p>{user?.role}</p>
           </div>
 
         </header>

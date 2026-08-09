@@ -11,9 +11,10 @@ import { Toast } from "bootstrap";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader/Loader";
 import PaginationComponent from "../../components/Pagination/Pagination";
+import UserInfo from "../../components/UserInfo/UserInfo";
 
 function Orders(){
-    const user=JSON.parse(localStorage.getItem("user"));
+    
     const[orders,setOrders]=useState([]);
     const[loader,setLoader]=useState(true)
     const[sortBy,setSortBy]=useState("id");
@@ -92,10 +93,7 @@ function Orders(){
             <div className="main-content">
                 <header className="nav-container">
                     <h2 className="ms-4">LogiTrack</h2>
-                    <div className="ms-4">
-                        <strong>{user.nom}</strong>
-                        <p>{user.role}</p>
-                    </div>
+                    <UserInfo/>
                 </header>
                 <main className="page-content">
                      <div className="nav-client">

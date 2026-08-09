@@ -12,9 +12,10 @@ import "./UserList.css";
 import PaginationComponent from "../../components/Pagination/Pagination";
 import Loader from "../../components/Loader/Loader";
 import { Link } from "react-router-dom";
+import UserInfo from "../../components/UserInfo/UserInfo";
 
 function UserList() {
-  const user = JSON.parse(localStorage.getItem("user"));
+
   const [countUser, setCountUser] = useState(0);
   const [countAdmin, setCountAdmin] = useState(0);
   const [countManager, setCountManager] = useState(0);
@@ -81,10 +82,7 @@ const handelDelet=async(id)=>{
       <div className="main-content">
         <header className="nav-container">
           <h2 className="ms-4">LogiTrack</h2>
-          <div className="me-4">
-            <strong>{user?.nom}</strong>
-            <p>{user?.role}</p>
-          </div>
+          <UserInfo/>
         </header>
         <main className="page-content">
           <div className="nav-client">

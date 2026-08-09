@@ -3,6 +3,7 @@ import Sidebar from "../../../components/Sidebar/Sidebar";
 import { useEffect, useState } from "react";
 import api from "../../../api/axios";
 import Loader from "../../../components/Loader/Loader";
+import UserInfo from "../../../components/UserInfo/UserInfo";
 
 
 function OrderDetails(){
@@ -27,10 +28,7 @@ function OrderDetails(){
             <div className="main-content">
                 <header className="nav-container">
                     <h2 className="ms-4">LogiTrak</h2>
-                    <div className="ms-4">
-                          <strong>nom</strong>
-                          <p>role</p>
-                    </div>
+                    <UserInfo/>
                 </header>
                 <main className="page-content">
                 <div className="card p-4">

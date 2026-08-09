@@ -3,12 +3,13 @@ import { useParams } from "react-router-dom";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import api from "../../../api/axios";
 import Loader from "../../../components/Loader/Loader";
+import UserInfo from "../../../components/UserInfo/UserInfo";
 
 function ProduitDetails() {
   const { id } = useParams();
   const [produit, setProduit] = useState();
   const [loader, setLoader] = useState(true);
-  const user = JSON.parse(localStorage.getItem("user"));
+ 
   useEffect(() => {
     api.get(`/api/products/${id}`).then((res) => {
         setProduit(res.data);
@@ -33,10 +34,7 @@ function ProduitDetails() {
       <div className="main-content">
         <header className="nav-container">
           <h2 className="ms-4">LogiTrack</h2>
-          <div className="me-4">
-            <strong>{user?.nom}</strong>
-            <p>{user?.role}</p>
-          </div>
+          <UserInfo/>
         </header>
         <main className="page-content">
           <div className="card p-4">

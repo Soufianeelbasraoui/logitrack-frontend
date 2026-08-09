@@ -10,9 +10,9 @@ import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import Loader from "../../components/Loader/Loader";
 import PaginationComponent from "../../components/Pagination/Pagination";
+import UserInfo from "../../components/UserInfo/UserInfo";
 
 function Products() {
-  const user = JSON.parse(localStorage.getItem("user"));
   const [products,setProducts]=useState([]);
   const[page,setPage]=useState(1);
   const[totalPages,setTotalPages]=useState(0);
@@ -22,6 +22,7 @@ function Products() {
   const[sortBy,setSortBy]=useState("id");
 
   const[categorie,setCategorie]=useState([]);
+
 
   useEffect(()=>{
       try{
@@ -72,10 +73,7 @@ function Products() {
       <div className="main-content">
         <header className="nav-container">
           <h2 className="ms-4">LogiTrack</h2>
-          <div className="me-4">
-            <strong>{user?.nom}</strong>
-            <p>{user?.role}</p>
-          </div>
+         <UserInfo/>
         </header>
         <main className="page-content">
           <div className="nav-produits">
@@ -86,6 +84,10 @@ function Products() {
           </div>
           <div className="card mt-2 p-3">
             <div className="card-search">
+               <div className="d-flex gap-2">
+                <input type="text" placeholder="Rechercher une catégorie..."  value={serchCategorie} onChange={(e)=>setSerchCategorie(e.target.value)}/>
+                <button  onClick={handelSearch}>search</button>
+              </div>
             <div>
              <label>Tri par: </label>
              <select value={sortBy} onClick={handleSort} onChange={(e)=>setSortBy(e.target.value)}>
@@ -95,11 +97,6 @@ function Products() {
               <option value="quantiteStock">Quantité en stock</option>
               </select>
             </div>
-
-              <div className="d-flex gap-2">
-                <input type="text" placeholder="Rechercher une catégorie..."  value={serchCategorie} onChange={(e)=>setSerchCategorie(e.target.value)}/>
-                <button className=" btn-search" onClick={handelSearch}>search</button>
-              </div>
             </div>
           
           </div>

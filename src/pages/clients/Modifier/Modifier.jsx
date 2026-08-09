@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import UserInfo from "../../../components/UserInfo/UserInfo";
 
 const schema = yup.object({
   nom: yup.string().required("Le nom est obligatoire"),
@@ -15,7 +16,6 @@ const schema = yup.object({
 });
 
 function Modifier() {
-  const user = JSON.parse(localStorage.getItem("user"));
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -64,10 +64,7 @@ function Modifier() {
         <div className="main-content">
           <header className="nav-container ">
             <h2 className="ms-4">LogiTrack</h2>
-           <div className="me-4 ">
-             <strong>{user.nom}</strong>
-            <p>{user.role}</p>
-           </div>
+           <UserInfo/>
           </header>
         <main className="page-content">
              <div className="card card-form ">
