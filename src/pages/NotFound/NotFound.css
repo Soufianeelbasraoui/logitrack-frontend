@@ -11,9 +11,8 @@
 
 .not-found-container h3 {
     font-size: 100px;
-    font-weight: 700;
-    color: #2563eb;
-    line-height: 1;
+    font-weight: 500;
+    color: #333;
     margin: 0;
 }
 .not-found-container h2 {
@@ -28,9 +27,9 @@
 }
 
 .not-found-container .btn-primary {
-    background: #2563eb;
-    border-color: #2563eb;
-    padding: 10px 25px;
-    border-radius: 8px;
+    background: #333333;
+    border-color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
     text-decoration: none;
 }
