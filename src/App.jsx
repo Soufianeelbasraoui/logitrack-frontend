@@ -23,6 +23,8 @@ import Orders from "./pages/orders/Orders";
 import OrderForm from "./pages/orders/orderForm/OrderForm";
 import OrderDetails from "./pages/orders/consulter/OrderDetails";
 import AddProductToOrder from "./pages/orders/orderForm/AddProductToOrder";
+import ModifierStatus from "./pages/orders/modifier/ModifierStatus";
+
 
 
 function App() {
@@ -92,7 +94,8 @@ function App() {
         <Route path="/dashboard/Orders" element={<ProtectedRoute ><RoleGuard roles={["ADMIN", "MANAGER", "AGENT"]}><Orders/></RoleGuard></ProtectedRoute>}/>
         <Route path="/dashboard/Orders/OrderForm" element={<ProtectedRoute><RoleGuard roles={["ADMIN", "MANAGER"]}><OrderForm/></RoleGuard></ProtectedRoute>}/>
         <Route path="/dashboard/Orders/show/:id" element={<ProtectedRoute><RoleGuard roles={["ADMIN", "MANAGER", "AGENT"]}><OrderDetails/></RoleGuard></ProtectedRoute>}/>
-        <Route path="//dashboard/Orders/add-product/:orderId" element={<ProtectedRoute><RoleGuard roles={["ADMIN", "MANAGER"]}><AddProductToOrder/></RoleGuard></ProtectedRoute>}/>
+        <Route path="/dashboard/Orders/add-product/:orderId" element={<ProtectedRoute><RoleGuard roles={["ADMIN", "MANAGER"]}><AddProductToOrder/></RoleGuard></ProtectedRoute>}/>
+        <Route path="/dashboard/Orders/modifierStatus/:id" element={<ProtectedRoute><RoleGuard roles={["ADMIN", "MANAGER"]}><ModifierStatus/></RoleGuard></ProtectedRoute>}/>
         <Route path="*" element={<NotFound/>} />
       </Routes>
       <ToastContainer position="top-right" autoClose={2000} theme="colored" />
