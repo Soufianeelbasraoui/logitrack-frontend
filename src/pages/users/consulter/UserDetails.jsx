@@ -6,7 +6,7 @@ import Loader from "../../../components/Loader/Loader";
 import UserInfo from "../../../components/UserInfo/UserInfo";
 
 function UserDetails(){
-    
+
     const {id}=useParams();
     const[alluser,setAllUsers]=useState();
     const[loader,setLoader]=useState(true);

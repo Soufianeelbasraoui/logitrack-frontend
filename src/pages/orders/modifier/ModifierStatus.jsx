@@ -29,8 +29,7 @@ function ModifierStatus() {
         api.get(`/api/commandes/${id}`)
             .then((res) => {
                 setValue("statut", res.data.statut);
-            })
-            .catch((err) => {
+            }).catch((err) => {
                 console.log(err);
                 toast.error("Impossible de charger la commande");
             });

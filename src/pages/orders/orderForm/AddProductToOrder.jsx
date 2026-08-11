@@ -10,16 +10,8 @@ import api from "../../../api/axios";
 import UserInfo from "../../../components/UserInfo/UserInfo";
 
 const schema = yup.object({
-    produitId: yup
-        .number()
-        .typeError("Veuillez sélectionner un produit")
-        .required("Le produit est obligatoire"),
-
-    quantite: yup
-        .number()
-        .typeError("La quantité est obligatoire")
-        .min(1, "La quantité doit être supérieure à 0")
-        .required("La quantité est obligatoire"),
+    produitId: yup.number().typeError("Veuillez sélectionner un produit").required("Le produit est obligatoire"),
+    quantite: yup.number().typeError("La quantité est obligatoire").min(1, "La quantité doit être supérieure à 0").required("La quantité est obligatoire"),
 });
 
 function AddProductToOrder() {

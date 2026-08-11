@@ -73,7 +73,7 @@ if(loader){
                 </div>
                 <Link className="btn-ajouter" to="/dashboard/Clients/ajouter">Ajouter une Client</Link>
             </div>
-            <div className="card p-4">
+            <div className="card p-4 mt-3">
               <div className="d-flex gap-2">
                 <input type="text" value={serch} onChange={(e)=>setSearch(e.target.value)}/>
                 <button onClick={handelSerch}>search</button>

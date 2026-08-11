@@ -7,6 +7,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import UserInfo from "../../../components/UserInfo/UserInfo";
 
+import "./AjouterProduits.css"
+
 const schema = yup.object({
   nom: yup.string().required("Le nom est obligatoire"),
   categorie: yup.string().required("La catégorie est obligatoire"),

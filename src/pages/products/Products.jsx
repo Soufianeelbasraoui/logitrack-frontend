@@ -1,5 +1,5 @@
 import "./Products.css";
-import "../style.css";
+import "../Style.css";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
