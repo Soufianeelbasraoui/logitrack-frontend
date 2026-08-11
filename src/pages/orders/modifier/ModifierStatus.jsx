@@ -26,8 +26,7 @@ function ModifierStatus() {
         resolver: yupResolver(schema),
     });
     useEffect(() => {
-        api.get(`/api/commandes/${id}`)
-            .then((res) => {
+        api.get(`/api/commandes/${id}`).then((res) => {
                 setValue("statut", res.data.statut);
             }).catch((err) => {
                 console.log(err);

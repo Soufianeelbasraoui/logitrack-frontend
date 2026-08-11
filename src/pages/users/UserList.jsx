@@ -60,7 +60,7 @@ function UserList() {
        }).catch((err) => {
           console.log(err);
         }).finally(()=>{
-
+          setLoader(false)
         });
   },[page])
   const handlePageChange=(newPage)=>{

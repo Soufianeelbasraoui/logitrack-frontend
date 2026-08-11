@@ -54,7 +54,7 @@ function Orders(){
             return;
         }
           api.get(`/api/commandes/search?statut=${status}&page=0&size=10`).then((res)=>{
-            setOrders(res.data.content);
+             setOrders(res.data.content);
              setTotalPages(res.data.totalPages)
           }).catch((err)=>{
             console.log(err);
@@ -65,6 +65,7 @@ function Orders(){
         api.get(`/api/commandes?page=0&size=10&sortBy=${sortBy}`).then((res)=>{
             setOrders(res.data.content);
             setTotalPages(res.data.totalPages)
+            
         }).catch((err)=>{
             console.log(err);
         })
@@ -85,9 +86,11 @@ function Orders(){
             console.log(err);
         });
     };
+
     const handlePageChange=(e)=>{
         setPage(e);
     }
+    
     return(
         <div className="main-layout">
             <Sidebar/>

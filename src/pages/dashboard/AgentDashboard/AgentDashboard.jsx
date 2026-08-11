@@ -26,7 +26,8 @@ function AgentDashboard(){
         <div className="container-agent">
            <h5 className="title-agent">Dashbord Agent</h5>
            <div className="d-flex gap-2  mt-3 ">
-            <div className="col-md-6 card p-2">
+            <div className="col-md-6 card p-1">
+                <h5>Liste des clients</h5>
                 <table className="table">
                     <thead>
                         <tr>

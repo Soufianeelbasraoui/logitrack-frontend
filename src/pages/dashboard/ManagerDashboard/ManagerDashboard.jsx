@@ -106,7 +106,7 @@ function ManagerDashboard(){
                         </div>
                     ))}
                  </div> 
-                 <Link className='text-center mt-3'>Voir tous les produits</Link>
+                 <Link to="/dashboard/Products" className='text-center mt-3'>Voir tous les produits</Link>
               
             </div>
             <div className='col-md-6 card p-2'>
@@ -139,7 +139,7 @@ function ManagerDashboard(){
                 </table>
                 
               </div>
-               <Link className='text-center'>Voir toutes les commandes</Link>
+               <Link to="/dashboard/Orders"  className='text-center'>Voir toutes les commandes</Link>
             </div>
 
           </div>

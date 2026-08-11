@@ -163,7 +163,7 @@ function AdminDashboard() {
                 </table>
                 
               </div>
-               <Link className='text-center'>Voir toutes les commandes</Link>
+               <Link to="/dashboard/Orders" className='text-center'>Voir toutes les commandes</Link>
             </div>
 
           </div>

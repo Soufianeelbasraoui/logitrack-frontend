@@ -39,17 +39,18 @@ function AddProductToOrder() {
             });
 
     }, []);
+const onSubmit = async (data) => {
+    try {
+        await api.post(`/api/commandes/${orderId}/products`, data);
 
-    const onSubmit = async (data) => {
-        try {
-            await api.post(`/api/commandes/${orderId}/products`,data);
-            toast.success("Produit ajouté à la commande");
-            navigate("/dashboard/Orders");
-        } catch (err) {
-            console.log(err);
-            toast.error("Erreur lors de l'ajout du produit");
-        }
-    };
+        toast.success("Produit ajouté à la commande");
+        navigate("/dashboard/Orders");
+
+    } catch (err) {
+        console.log(err);
+        toast.error("Erreur lors de l'ajout du produit");
+    }
+};
     return (
         <div className="main-layout">
             <Sidebar />

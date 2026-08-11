@@ -93,7 +93,6 @@ function Register() {
                 {...register("role")}
               >
                 <option value="">Choisir un rôle</option>
-                <option value="ADMIN">ADMIN</option>
                 <option value="MANAGER">MANAGER</option>
                 <option value="AGENT">AGENT</option>
               </select>

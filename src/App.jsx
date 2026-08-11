@@ -75,7 +75,7 @@ function App() {
           path="/dashboard/Clients/ClientDetails/:id"
           element={
             <ProtectedRoute>
-              <RoleGuard roles={["ADMIN", "MANAGER", "AGENT"]}>
+              <RoleGuard roles={["ADMIN", "MANAGER"]}>
                 <ClientDetails />
               </RoleGuard>
             </ProtectedRoute>
@@ -119,7 +119,7 @@ function App() {
           path="/dashboard/Products/ProduitDetails/:id"
           element={
             <ProtectedRoute>
-              <RoleGuard roles={["ADMIN", "MANAGER", "AGENT"]}>
+              <RoleGuard roles={["ADMIN", "MANAGER"]}>
                 <ProduitDetails />
               </RoleGuard>
             </ProtectedRoute>
