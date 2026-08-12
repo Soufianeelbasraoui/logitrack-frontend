@@ -9,9 +9,13 @@ import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstruct
 import HomeIcon from "@mui/icons-material/Home";
 import logo from "../../assets/logo1.png";
 import { logout } from "../../services/authService";
+import { jwtDecode } from "jwt-decode";
 
 function Sidebar() {
   const navigate = useNavigate();
+
+  const token=localStorage.getItem("token");
+  const user=jwtDecode(token);
 
   const handleLogout = () => {
     logout();
@@ -40,9 +44,12 @@ function Sidebar() {
           <NavLink to="/dashboard/Orders" className="nav-link mt-3 sidebar-nav-link d-flex align-items-center rounded-3">
             <PendingActionsIcon className="sidebar-icon me-2" />Commandes
           </NavLink>
-          <NavLink to="/dashboard/userList" className="nav-link mt-3 sidebar-nav-link d-flex align-items-center rounded-3">
+          {user.role=="ADMIN"  &&(
+              <NavLink to="/dashboard/userList" className="nav-link mt-3 sidebar-nav-link d-flex align-items-center rounded-3">
             <GroupIcon className="sidebar-icon me-2" />Utilisateurs
           </NavLink>
+          )}
+         
           <NavLink to="/dashboard/Profile" className="nav-link mt-3 sidebar-nav-link d-flex align-items-center rounded-3">
             <AccountCircleIcon className="sidebar-icon me-2" />Profile
           </NavLink>

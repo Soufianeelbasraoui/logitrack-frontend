@@ -34,6 +34,7 @@ function Clients(){
       setLoader(false);
     });
    }, [page]);
+   
   const handelDelet = async (id) => {
   try {
     await api.delete(`/api/clients/${id}`);
