@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../../components/Sidebar/Sidebar";
+import Navbar from "../../../components/Navbar/Navbar";
 import api from "../../../api/axios";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import UserInfo from "../../../components/UserInfo/UserInfo";
+import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+
+import "./AjouterProduits.css";
+import "../../../pages/Style.css";
 
 const schema = yup.object({
   nom: yup.string().required("Le nom est obligatoire"),
@@ -19,7 +23,7 @@ function AjouterProduits() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -27,11 +31,11 @@ function AjouterProduits() {
   const onSubmit = async (data) => {
     try {
       await api.post("/api/products", data);
-      toast.success("Produit ajouté avec succès");
+      toast.success("Produit ajouté avec succès !");
       navigate("/dashboard/Products");
     } catch (error) {
       console.log(error);
-      toast.error("Erreur lors de l'ajout du produit");
+      toast.error("Erreur lors de l'ajout du produit.");
     }
   };
 
@@ -39,76 +43,85 @@ function AjouterProduits() {
     <div className="main-layout">
       <Sidebar />
       <div className="main-content">
-        <header className="nav-container">
-          <h2 className="ms-4">LogiTrack</h2>
-          <UserInfo/>
-          
-        </header>
+        <Navbar title="Produits" />
+
         <main className="page-content">
-          <div className="card card-form">
-            <h5 className="text-center">
-              Ajouter nouveau produit
-            </h5>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="form-group">
-                <label>Nom :</label>
-                <input
-                  type="text"
-                  placeholder="Entrer le nom"
-                  {...register("nom")}
-                />
-                <small className="text-danger">
-                  {errors.nom?.message}
-                </small>
+          <div className="card-form-container">
+            <div className="card-form">
+              <div className="form-header-row">
+                <div className="form-header-icon-box">
+                  <AddBoxOutlinedIcon fontSize="medium" />
+                </div>
+                <div>
+                  <h3 className="form-title">Ajouter un nouveau produit</h3>
+                  <p className="form-subtitle">Renseignez les détails du produit pour l'ajouter au stock</p>
+                </div>
               </div>
-              <div className="form-group">
-                <label>Catégorie :</label>
-                <input
-                  type="text"
-                  placeholder="Entrer la catégorie"
-                  {...register("categorie")}
-                />
-                <small className="text-danger">
-                  {errors.categorie?.message}
-                </small>
-              </div>
-              <div className="form-group">
-                <label>Prix :</label>
-                <input
-                  type="number"
-                  step="0.01"
-                  placeholder="Entrer le prix"
-                  {...register("prix")}
-                />
-                <small className="text-danger">
-                  {errors.prix?.message}
-                </small>
-              </div>
-              <div className="form-group">
-                <label>Quantité en stock :</label>
-                <input
-                  type="number"
-                  placeholder="Entrer la quantité"
-                  {...register("quantiteStock")}
-                />
-                <small className="text-danger">
-                  {errors.quantiteStock?.message}
-                </small>
-              </div>
-              <button
-                type="button"
-                className="btn-annuler me-3"
-                onClick={() => navigate("/dashboard/Products")}
-              >
-                Annuler
-              </button>
-              <button
-                type="submit"
-                className="btn-enregistrer"
-              >
-                Enregistrer
-              </button>
-            </form>
+
+              <form onSubmit={handleSubmit(onSubmit)} noValidate>
+                <div className="form-group">
+                  <label htmlFor="nom">Nom du produit :</label>
+                  <input
+                    id="nom"
+                    type="text"
+                    placeholder="Ex: Clavier mécanique RGB"
+                    {...register("nom")}
+                  />
+                  {errors.nom && <small className="text-danger">{errors.nom.message}</small>}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="categorie">Catégorie :</label>
+                  <input
+                    id="categorie"
+                    type="text"
+                    placeholder="Ex: Périphériques, Écrans, Audio..."
+                    {...register("categorie")}
+                  />
+                  {errors.categorie && <small className="text-danger">{errors.categorie.message}</small>}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="prix">Prix unitaire (MAD) :</label>
+                  <input
+                    id="prix"
+                    type="number"
+                    step="0.01"
+                    placeholder="Ex: 450.00"
+                    {...register("prix")}
+                  />
+                  {errors.prix && <small className="text-danger">{errors.prix.message}</small>}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="quantiteStock">Quantité initiale en stock :</label>
+                  <input
+                    id="quantiteStock"
+                    type="number"
+                    placeholder="Ex: 25"
+                    {...register("quantiteStock")}
+                  />
+                  {errors.quantiteStock && <small className="text-danger">{errors.quantiteStock.message}</small>}
+                </div>
+
+                <div className="form-actions-row">
+                  <button
+                    type="button"
+                    className="btn-annuler"
+                    onClick={() => navigate("/dashboard/Products")}
+                  >
+                    Annuler
+                  </button>
+                  <button
+                    type="submit"
+                    className="btn-enregistrer"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Enregistrement..." : "Enregistrer le produit"}
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </main>
       </div>
@@ -116,4 +129,4 @@ function AjouterProduits() {
   );
 }
 
-export default AjouterProduits;
+export default AjouterProduits;

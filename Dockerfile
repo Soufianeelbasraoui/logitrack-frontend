@@ -1,0 +1,9 @@
+FROM node:22-alpine AS build
+WORKDIR /usr/src/app
+COPY . .
+RUN npm install
+RUN npm run build
+
+FROM nginxinc/nginx-unprivileged:1.24-bullseye-perl
+COPY --from=build /usr/src/app/dist /usr/share/nginx/html
+EXPOSE 8080
