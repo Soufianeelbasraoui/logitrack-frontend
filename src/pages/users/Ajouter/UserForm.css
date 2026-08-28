@@ -1,58 +1,180 @@
-.card-form {
-  max-width: 500px;
-  margin: 30px auto;
-  padding: 25px;
-  border-radius: 5px;
+.user-form-page-container {
+  max-width: 680px;
+  margin: 0 auto;
 }
 
-.card-form h5 {
-  text-align: center;
-  margin-bottom: 10px;
-  font-weight: 500;
+.user-form-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px 36px;
+  box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.05);
+  border: 1px solid #edf2f7;
 }
 
-.form-group {
-  margin-bottom: 10px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 2px;
-  font-weight: 400;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ced4da;
-  border-radius: 6px;
-  
-}
-.text-danger {
-  font-size: 13px;
-}
-
-.form-buttons {
+.user-form-header {
   display: flex;
-  justify-content: end;
-  gap: 10px;
-  margin-top: 10px;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #edf2f7;
 }
 
-.btn-annuler {
-  padding: 5px 15px;
-  border: 1px solid #6c757d;
-  background: white;
-  color: #6c757d;
-  border-radius: 5px;
+.form-header-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: #e0f2fe;
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.form-card-subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+}
+
+.user-form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-field-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.form-field-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.field-icon {
+  position: absolute;
+  left: 14px;
+  color: #94a3b8;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.form-text-input,
+.form-select-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px 0 42px;
+  font-size: 13.5px;
+  font-family: inherit;
+  color: #1e293b;
+  background-color: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-select-input {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 40px;
   cursor: pointer;
 }
 
-.btn-enregistrer {
-  padding: 5px 15px;
+.field-arrow-icon {
+  position: absolute;
+  right: 14px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.form-text-input:hover,
+.form-select-input:hover {
+  border-color: #cbd5e1;
+}
+
+.form-text-input:focus,
+.form-select-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.form-field-wrapper.has-error .form-text-input,
+.form-field-wrapper.has-error .form-select-input {
+  border-color: #ef4444;
+}
+
+.field-error-text {
+  font-size: 12px;
+  color: #ef4444;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.form-action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 20px;
+  border-top: 1px solid #edf2f7;
+}
+
+.btn-cancel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 18px;
+  height: 42px;
+  border: 1.5px solid #e2e8f0;
+  background-color: #ffffff;
+  color: #64748b;
+  font-size: 13.5px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #f8fafc;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.btn-save {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 22px;
+  height: 42px;
   border: none;
-  background: #0d6efd;
-  color: white;
-  border-radius: 5px;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 600;
+  border-radius: 10px;
   cursor: pointer;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-save:hover {
+  background-color: #1d4ed8;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px);
 }

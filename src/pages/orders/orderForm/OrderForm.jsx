@@ -5,82 +5,129 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "react-toastify";
 import Sidebar from "../../../components/Sidebar/Sidebar";
+import Navbar from "../../../components/Navbar/Navbar";
 import api from "../../../api/axios";
-import UserInfo from "../../../components/UserInfo/UserInfo";
+import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
+
+import "../../products/Ajouter/AjouterProduits.css";
+import "../../../pages/Style.css";
+
+const defaultDemoClients = [
+  { id: 1, nom: "Anass Berrada" },
+  { id: 2, nom: "Salma Alami" },
+  { id: 3, nom: "Ayoub Tazi" },
+  { id: 4, nom: "Nour Benjelloun" },
+  { id: 5, nom: "Youssef Hariri" },
+];
+
 const schema = yup.object({
   clientId: yup.number().typeError("Veuillez sélectionner un client").required("Le client est obligatoire"),
-    statut: yup.string().required("Le statut est obligatoire"),
+  statut: yup.string().required("Le statut est obligatoire"),
 });
+
 function OrderForm() {
   const navigate = useNavigate();
-  const [clients, setClients] = useState([]);
+  const [clients, setClients] = useState(defaultDemoClients);
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: { statut: "EN_ATTENTE"},
+    defaultValues: { statut: "EN_ATTENTE" },
   });
+
   useEffect(() => {
-    api.get("/api/clients?page=0&size=10").then((res) => {
-        setClients(res.data.content);
+    api
+      .get("/api/clients?page=0&size=50")
+      .then((res) => {
+        if (res.data?.content && Array.isArray(res.data.content) && res.data.content.length > 0) {
+          setClients(res.data.content);
+        } else if (Array.isArray(res.data) && res.data.length > 0) {
+          setClients(res.data);
+        }
       })
       .catch((err) => {
         console.log(err);
-        toast.error("Impossible de charger les clients");
       });
   }, []);
+
   const onSubmit = async (data) => {
     try {
-      await api.post("/api/commandes",data);
-      toast.success("Commande ajoutée avec succès");
-      navigate("/dashboard/orders");
+      await api.post("/api/commandes", data);
+      toast.success("Commande créée avec succès !");
+      navigate("/dashboard/Orders");
     } catch (err) {
       console.log(err);
-      toast.error("Erreur lors de l'ajout de la commande");
+      toast.error("Erreur lors de la création de la commande.");
     }
   };
+
   return (
     <div className="main-layout">
       <Sidebar />
       <div className="main-content">
-        <header className="nav-container">
-          <h2 className="ms-4">LogiTrack</h2>
-           <UserInfo/>
-        </header>
+        <Navbar title="Commandes" />
+
         <main className="page-content">
-          <div className="card card-form">
-            <h5 className="text-center mb-4"> Ajouter une commande </h5>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="form-group mb-3">
-                <label>Client :</label>
-                <select {...register("clientId")}>
-                  <option value="">Sélectionner un client  </option>
-                  {clients.map((client) => (
-                    <option key={client.id}  value={client.id}>
-                     {client.nom}
-                    </option>
-                  ))}
-                </select>
-                <small className="text-danger">
-                  {errors.clientId?.message}
-                </small>
+          <div className="card-form-container">
+            <div className="card-form">
+              <div className="form-header-row">
+                <div className="form-header-icon-box">
+                  <AddShoppingCartOutlinedIcon fontSize="medium" />
+                </div>
+                <div>
+                  <h3 className="form-title">Créer une nouvelle commande</h3>
+                  <p className="form-subtitle">Associez un client et définissez le statut initial</p>
+                </div>
               </div>
-              <div className="form-group mb-3">
-                <label>Statut :</label>
-                <select {...register("statut")}>
-                  <option value="EN_ATTENTE"> EN_ATTENTE </option>
-                  <option value="EXPEDIEE">  EXPEDIEE </option>
-                  <option value="LIVREE"> LIVREE </option>
-                </select>
-                <small className="text-danger">
-                  {errors.statut?.message}
-                </small>
-              </div>
-              <button  type="button" className="btn-annuler me-3"  onClick={() => navigate("/dashboard/Orders")}> Annuler</button>
-              <button type="submit" className="btn-enregistrer" >Enregistrer</button>
-            </form>
+
+              <form onSubmit={handleSubmit(onSubmit)} noValidate>
+                <div className="form-group">
+                  <label htmlFor="clientId">Client associé :</label>
+                  <select id="clientId" {...register("clientId")}>
+                    <option value="">Sélectionner un client...</option>
+                    {clients.map((client) => (
+                      <option key={client.id} value={client.id}>
+                        {client.nom} {client.telephone ? `(${client.telephone})` : ""}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.clientId && (
+                    <small className="text-danger">{errors.clientId.message}</small>
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="statut">Statut initial :</label>
+                  <select id="statut" {...register("statut")}>
+                    <option value="EN_ATTENTE">En attente</option>
+                    <option value="EXPEDIEE">Expédiée</option>
+                    <option value="LIVREE">Livrée</option>
+                  </select>
+                  {errors.statut && (
+                    <small className="text-danger">{errors.statut.message}</small>
+                  )}
+                </div>
+
+                <div className="form-actions-row">
+                  <button
+                    type="button"
+                    className="btn-annuler"
+                    onClick={() => navigate("/dashboard/Orders")}
+                  >
+                    Annuler
+                  </button>
+                  <button
+                    type="submit"
+                    className="btn-enregistrer"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Création en cours..." : "Créer la commande"}
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </main>
       </div>
@@ -88,4 +135,4 @@ function OrderForm() {
   );
 }
 
-export default OrderForm;
+export default OrderForm;

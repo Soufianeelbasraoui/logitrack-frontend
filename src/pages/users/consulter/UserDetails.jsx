@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import Sidebar from "../../../components/Sidebar/Sidebar";
+import Navbar from "../../../components/Navbar/Navbar";
 import { useEffect, useState } from "react";
 import api from "../../../api/axios";
 import Loader from "../../../components/Loader/Loader";
-import UserInfo from "../../../components/UserInfo/UserInfo";
 
 function UserDetails(){
 
@@ -26,10 +26,7 @@ function UserDetails(){
         <div className="main-layout">
             <Sidebar/>
             <div className="main-content">
-                <header className="nav-container">
-                    <h2 className="ms-4">LogiTrack</h2>
-                    <UserInfo/>
-                </header>
+                <Navbar title="Utilisateurs" />
                 <main className="page-content">
                   <div className="card p-4">
                      <h3>Détails du user</h3>

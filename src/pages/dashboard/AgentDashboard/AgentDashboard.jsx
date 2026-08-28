@@ -66,7 +66,7 @@ function AgentDashboard(){
                     </thead>
                     <tbody>  
                         {products.map((item)=>(
-                            <tr>
+                            <tr key={item.id ?? item.nom}>
                                 <td>{item.id}</td>
                                 <td>{item.nom}</td>
                                 <td>{item.categorie}</td>
