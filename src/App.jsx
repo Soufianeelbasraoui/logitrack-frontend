@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Login from "./pages/Auth/Login/Login";
 import Register from "./pages/Auth/Register/Register";
+import LandingPage from "./pages/LandingPage";
 
 import DashboardCart from "./pages/dashboard/DashboardCart";
 
@@ -37,7 +38,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
