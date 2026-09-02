@@ -102,13 +102,15 @@ function Sidebar() {
           <span>Profil</span>
         </NavLink>
 
-        <NavLink
-          to="/dashboard/Profile"
-          className="sidebar-nav-item"
-        >
-          <SettingsOutlined className="sidebar-item-icon" />
-          <span>Paramètres</span>
-        </NavLink>
+        {user?.role === "ADMIN" && (
+          <NavLink
+            to="/dashboard/Settings"
+            className={({ isActive }) => `sidebar-nav-item ${isActive ? "active" : ""}`}
+          >
+            <SettingsOutlined className="sidebar-item-icon" />
+            <span>Paramètres</span>
+          </NavLink>
+        )}
       </nav>
 
       {/* Logout Button */}

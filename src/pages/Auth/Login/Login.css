@@ -11,7 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 24px;
+  padding: 30px 20px;
   background-color: #f6f8fc;
 }
 
@@ -19,17 +19,16 @@
 .auth-card {
   width: 100%;
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 10px 35px -8px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
   border: 1px solid #edf2f7;
-  padding: 48px 42px;
+  padding: 40px 38px;
 }
 
 .login-card-custom {
   max-width: 460px;
 }
 
-/* Header */
 .auth-card-header {
   text-align: center;
   margin-bottom: 28px;

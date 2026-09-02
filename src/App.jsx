@@ -27,6 +27,7 @@ import OrderDetails from "./pages/orders/consulter/OrderDetails";
 import AddProductToOrder from "./pages/orders/orderForm/AddProductToOrder";
 import ModifierStatus from "./pages/orders/modifier/ModifierStatus";
 import Profile from "./pages/Profile/Profile";
+import Settings from "./pages/Settings/Settings";
 import ProtectedRoute from "./components/ProtectedRoute";
 import RoleGuard from "./components/RoleGuard";
 import Unauthorized from "./pages/Unauthorized/Unauthorized";
@@ -230,6 +231,17 @@ function App() {
           element={
             <ProtectedRoute>
               <Profile />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard/Settings"
+          element={
+            <ProtectedRoute>
+              <RoleGuard roles={["ADMIN"]}>
+                <Settings />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />

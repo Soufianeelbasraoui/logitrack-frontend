@@ -64,7 +64,6 @@ function Register() {
   return (
     <div className="auth-page-container">
       <LeftPanel />
-
       <div className="auth-right-container">
         <div className="auth-card register-card-custom">
           <div className="auth-card-header">
@@ -76,7 +75,6 @@ function Register() {
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="auth-form" noValidate>
-            {/* Nom & Prénom Row */}
             <div className="auth-form-row">
               <div className="auth-form-group">
                 <label className="auth-label">Nom</label>
@@ -134,7 +132,6 @@ function Register() {
               )}
             </div>
 
-            {/* Mot de passe */}
             <div className="auth-form-group">
               <label className="auth-label">Mot de passe</label>
               <div className={`auth-input-wrapper ${errors.password ? "has-error" : ""}`}>
@@ -165,7 +162,6 @@ function Register() {
               )}
             </div>
 
-            {/* Confirmer le mot de passe */}
             <div className="auth-form-group">
               <label className="auth-label">Confirmer le mot de passe</label>
               <div className={`auth-input-wrapper ${errors.confirmPassword ? "has-error" : ""}`}>
@@ -196,7 +192,6 @@ function Register() {
               )}
             </div>
 
-            {/* Rôle */}
             <div className="auth-form-group">
               <label className="auth-label">Rôle</label>
               <div className={`auth-input-wrapper ${errors.role ? "has-error" : ""}`}>
@@ -221,7 +216,6 @@ function Register() {
               )}
             </div>
 
-            {/* Terms & Conditions Checkbox */}
             <div className="auth-terms-row">
               <label className="auth-terms-label">
                 <input
@@ -244,20 +238,15 @@ function Register() {
                 <span className="auth-error-text d-block mt-1">{errors.terms.message}</span>
               )}
             </div>
-
-            {/* Submit Button */}
             <button type="submit" className="auth-submit-btn" disabled={isSubmitting}>
               <PersonAddAlt1Outlined fontSize="small" />
               <span>{isSubmitting ? "Création en cours..." : "Créer un compte"}</span>
             </button>
           </form>
-
-          {/* Divider */}
           <div className="auth-divider">
             <span>ou</span>
           </div>
 
-          {/* Footer Link */}
           <div className="auth-footer-prompt">
             Vous avez déjà un compte ?{" "}
             <Link to="/login" className="auth-link">
