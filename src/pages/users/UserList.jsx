@@ -6,6 +6,7 @@ import api from "../../api/axios";
 import { toast } from "react-toastify";
 import "./UserList.css";
 import "../Style.css";
+import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
 
 import {
   TuneOutlined,
@@ -48,6 +49,12 @@ function UserList() {
   const [totalPage, setTotalePage] = useState(2);
   const [roleFilter, setRoleFilter] = useState("ALL");
   const [searchTerm, setSearchTerm] = useState("");
+  const [deleteModal, setDeleteModal] = useState({
+    isOpen: false,
+    userId: null,
+    userName: "",
+    isLoading: false,
+  });
 
   useEffect(() => {
     api.get("/api/users/count")
@@ -111,16 +118,30 @@ function UserList() {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (window.confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
-      try {
-        await api.delete(`/api/users/${id}`);
-        setUtilisateur((prev) => prev.filter((item) => item.id !== id));
-        toast.success("Utilisateur supprimé avec succès.");
-      } catch {
-        setUtilisateur((prev) => prev.filter((item) => item.id !== id));
-        toast.success("Utilisateur supprimé avec succès.");
-      }
+  const handleDeleteClick = (user) => {
+    setDeleteModal({
+      isOpen: true,
+      userId: user.id,
+      userName: `${user.prenom || ""} ${user.nom || ""}`.trim() || user.email || "Utilisateur",
+      isLoading: false,
+    });
+  };
+
+  const handleConfirmDelete = async () => {
+    const id = deleteModal.userId;
+    if (!id) return;
+    setDeleteModal((prev) => ({ ...prev, isLoading: true }));
+    try {
+      await api.delete(`/api/users/${id}`);
+      setUtilisateur((prev) => prev.filter((item) => item.id !== id));
+      setCountUser((prev) => Math.max(0, prev - 1));
+      toast.success("Utilisateur supprimé avec succès.");
+      setDeleteModal({ isOpen: false, userId: null, userName: "", isLoading: false });
+    } catch {
+      setUtilisateur((prev) => prev.filter((item) => item.id !== id));
+      setCountUser((prev) => Math.max(0, prev - 1));
+      toast.success("Utilisateur supprimé avec succès.");
+      setDeleteModal({ isOpen: false, userId: null, userName: "", isLoading: false });
     }
   };
 
@@ -352,7 +373,7 @@ function UserList() {
                               <button
                                 type="button"
                                 className="action-btn btn-delete"
-                                onClick={() => handleDelete(item.id)}
+                                onClick={() => handleDeleteClick(item)}
                                 title="Supprimer"
                               >
                                 <DeleteOutlineOutlined fontSize="small" />
@@ -407,6 +428,19 @@ function UserList() {
           </div>
         </main>
       </div>
+
+      <ConfirmModal
+        isOpen={deleteModal.isOpen}
+        title="Supprimer l'utilisateur"
+        message="Êtes-vous sûr de vouloir supprimer définitivement cet utilisateur ? Cette action est irréversible."
+        itemName={deleteModal.userName}
+        confirmText="Supprimer"
+        isLoading={deleteModal.isLoading}
+        onConfirm={handleConfirmDelete}
+        onClose={() =>
+          setDeleteModal({ isOpen: false, userId: null, userName: "", isLoading: false })
+        }
+      />
     </div>
   );
 }

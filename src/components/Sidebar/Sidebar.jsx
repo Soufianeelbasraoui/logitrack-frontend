@@ -13,6 +13,7 @@ import {
 } from "@mui/icons-material";
 import { logout } from "../../services/authService";
 import { jwtDecode } from "jwt-decode";
+import logoImg from "../../assets/logo1.png";
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -35,14 +36,7 @@ function Sidebar() {
       {/* Brand Header */}
       <div className="sidebar-brand">
         <div className="sidebar-brand-icon">
-          <svg width="34" height="34" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22 2L40 12V32L22 42L4 32V12L22 2Z" stroke="white" strokeWidth="3" strokeLinejoin="round" />
-            <path d="M22 2V22M22 22L40 12M22 22L4 12" stroke="white" strokeWidth="2.5" strokeLinejoin="round" />
-            <path d="M22 22V42" stroke="white" strokeWidth="2.5" strokeLinejoin="round" />
-            <polygon points="22,7 34,14 22,21 10,14" fill="rgba(99, 179, 237, 0.4)" />
-            <polygon points="10,16 22,23 22,37 10,30" fill="rgba(59, 130, 246, 0.5)" />
-            <polygon points="22,23 34,16 34,30 22,37" fill="rgba(37, 99, 235, 0.7)" />
-          </svg>
+          <img src={logoImg} alt="LogiTrack Logo" className="sidebar-brand-logo-img" />
         </div>
         <h2 className="sidebar-brand-name">
           Logi<span>Track</span>
@@ -102,13 +96,15 @@ function Sidebar() {
           <span>Profil</span>
         </NavLink>
 
-        <NavLink
-          to="/dashboard/Profile"
-          className="sidebar-nav-item"
-        >
-          <SettingsOutlined className="sidebar-item-icon" />
-          <span>Paramètres</span>
-        </NavLink>
+        {user?.role === "ADMIN" && (
+          <NavLink
+            to="/dashboard/Settings"
+            className={({ isActive }) => `sidebar-nav-item ${isActive ? "active" : ""}`}
+          >
+            <SettingsOutlined className="sidebar-item-icon" />
+            <span>Paramètres</span>
+          </NavLink>
+        )}
       </nav>
 
       {/* Logout Button */}

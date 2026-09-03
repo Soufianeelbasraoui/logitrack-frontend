@@ -50,20 +50,22 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: #2563eb;
+  background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
   color: #ffffff;
   padding: 10px 20px;
   border-radius: 10px;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.3);
   transition: all 0.2s ease-in-out;
 }
 
 .btn-add-user:hover {
-  background-color: #1d4ed8;
-  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+  background: linear-gradient(135deg, #EA580C 0%, #C2410C 100%);
+  box-shadow: 0 6px 18px rgba(249, 115, 22, 0.4);
   transform: translateY(-1px);
   color: #ffffff;
 }
@@ -508,8 +510,8 @@
 }
 
 .page-num-btn.active {
-  background-color: #2563eb;
-  border-color: #2563eb;
+  background-color: #f97316;
+  border-color: #f97316;
   color: #ffffff;
 }
 

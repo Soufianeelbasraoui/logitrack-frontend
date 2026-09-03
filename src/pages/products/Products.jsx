@@ -18,6 +18,7 @@ import DevicesOutlinedIcon from "@mui/icons-material/DevicesOutlined";
 
 import "./Products.css";
 import "../Style.css";
+import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
 
 const defaultDemoProducts = [
   { id: 1, nom: "Clavier mécanique RGB", categorie: "Périphériques", prix: 450.0, quantiteStock: 18 },
@@ -42,6 +43,12 @@ function Products() {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [sortBy, setSortBy] = useState("id");
   const [, setIsLoading] = useState(false);
+  const [deleteModal, setDeleteModal] = useState({
+    isOpen: false,
+    productId: null,
+    productName: "",
+    isLoading: false,
+  });
 
   // Fetch products from backend
   const fetchProducts = useCallback(async () => {
@@ -88,16 +95,29 @@ function Products() {
     fetchProducts();
   }, [fetchProducts]);
 
-  // Handle product delete
-  const handleDelete = async (id) => {
-    if (!window.confirm("Êtes-vous sûr de vouloir supprimer ce produit ?")) return;
+  // Handle product delete click
+  const handleDeleteClick = (product) => {
+    setDeleteModal({
+      isOpen: true,
+      productId: product.id,
+      productName: product.nom,
+      isLoading: false,
+    });
+  };
+
+  const handleConfirmDelete = async () => {
+    const id = deleteModal.productId;
+    if (!id) return;
+    setDeleteModal((prev) => ({ ...prev, isLoading: true }));
     try {
       await api.delete(`/api/products/${id}`);
       toast.success("Produit supprimé avec succès.");
       setProducts((prev) => prev.filter((p) => p.id !== id));
       setTotalElements((prev) => Math.max(0, prev - 1));
+      setDeleteModal({ isOpen: false, productId: null, productName: "", isLoading: false });
     } catch {
       toast.error("Erreur lors de la suppression du produit.");
+      setDeleteModal((prev) => ({ ...prev, isLoading: false }));
     }
   };
 
@@ -306,7 +326,7 @@ function Products() {
                             <button
                               type="button"
                               className="btn-action btn-action-delete"
-                              onClick={() => handleDelete(item.id)}
+                              onClick={() => handleDeleteClick(item)}
                               title="Supprimer"
                             >
                               <DeleteOutlineRoundedIcon fontSize="small" />
@@ -362,8 +382,21 @@ function Products() {
           </div>
         </main>
       </div>
+
+      <ConfirmModal
+        isOpen={deleteModal.isOpen}
+        title="Supprimer le produit"
+        message="Êtes-vous sûr de vouloir supprimer définitivement ce produit du catalogue ? Cette action est irréversible."
+        itemName={deleteModal.productName}
+        confirmText="Supprimer"
+        isLoading={deleteModal.isLoading}
+        onConfirm={handleConfirmDelete}
+        onClose={() =>
+          setDeleteModal({ isOpen: false, productId: null, productName: "", isLoading: false })
+        }
+      />
     </div>
   );
 }
 
-export default Products;
+export default Products;

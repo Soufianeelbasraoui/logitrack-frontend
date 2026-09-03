@@ -1,4 +1,5 @@
 import { PeopleAlt, Inventory2, Assignment } from "@mui/icons-material";
+import logoImg from "../../../assets/logo1.png";
 import "./LeftPanel.css";
 
 function LeftPanel() {
@@ -71,14 +72,7 @@ function LeftPanel() {
         {/* Brand Header */}
         <div className="auth-brand">
           <div className="brand-logo-icon">
-            <svg width="42" height="42" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M22 2L40 12V32L22 42L4 32V12L22 2Z" stroke="white" strokeWidth="3" strokeLinejoin="round" />
-              <path d="M22 2V22M22 22L40 12M22 22L4 12" stroke="white" strokeWidth="2.5" strokeLinejoin="round" />
-              <path d="M22 22V42" stroke="white" strokeWidth="2.5" strokeLinejoin="round" />
-              <polygon points="22,7 34,14 22,21 10,14" fill="rgba(99, 179, 237, 0.25)" />
-              <polygon points="10,16 22,23 22,37 10,30" fill="rgba(59, 130, 246, 0.4)" />
-              <polygon points="22,23 34,16 34,30 22,37" fill="rgba(37, 99, 235, 0.6)" />
-            </svg>
+            <img src={logoImg} alt="LogiTrack Logo" className="auth-brand-logo-img" />
           </div>
           <h1 className="brand-name">Logi<span>Track</span></h1>
         </div>
