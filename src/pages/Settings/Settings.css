@@ -1,15 +1,9 @@
-/* ─────────────────────────────────────────────────────────────
-   Settings.css  –  Admin Settings Page
-───────────────────────────────────────────────────────────── */
 
-/* ── Page container ─────────────────────────────────────────── */
 .settings-page {
   display: flex;
   flex-direction: column;
   gap: 28px;
 }
-
-/* ── Page header ─────────────────────────────────────────────── */
 .settings-page-header {
   display: flex;
   align-items: center;
