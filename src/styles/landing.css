@@ -223,16 +223,34 @@ html {
   cursor: pointer;
 }
 
+.navbar-logo-img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+  transition: transform 0.25s ease;
+}
+
+.navbar-logo:hover .navbar-logo-img {
+  transform: scale(1.06);
+}
+
 .navbar-logo-icon {
   font-size: 1.8rem;
   line-height: 1;
 }
 
 .navbar-logo-text {
-  font-size: 1.5rem;
+  font-size: 1.55rem;
   font-weight: 800;
   color: var(--primary);
   letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo-text span {
+  color: var(--white);
 }
 
 .navbar-links {
@@ -1274,9 +1292,15 @@ html {
 .footer-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
   margin-bottom: 18px;
+}
+
+.footer-logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 .footer-desc {

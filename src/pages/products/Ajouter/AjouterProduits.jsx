@@ -114,7 +114,7 @@ function AjouterProduits() {
                   </button>
                   <button
                     type="submit"
-                    className="btn-enregistrer"
+                    className="btn btn-enregistrer"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? "Enregistrement..." : "Enregistrer le produit"}
@@ -129,4 +129,4 @@ function AjouterProduits() {
   );
 }
 
-export default AjouterProduits;
+export default AjouterProduits;

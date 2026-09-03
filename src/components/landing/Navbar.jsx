@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import logoImg from "../../assets/logo1.png";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,8 +33,8 @@ export default function Navbar() {
       <div className="landing-container">
         <div className="navbar-inner">
           <div className="navbar-logo" onClick={() => scrollToSection("hero")}>
-            <span className="navbar-logo-icon">🚚</span>
-            <span className="navbar-logo-text">LogiTrack</span>
+            <img src={logoImg} alt="LogiTrack Logo" className="navbar-logo-img" />
+            <span className="navbar-logo-text">Logi<span>Track</span></span>
           </div>
 
           <nav>

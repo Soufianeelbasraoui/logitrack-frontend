@@ -17,6 +17,7 @@ import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 
 import "./clients.css";
 import "../Style.css";
+import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
 
 // Exact 10 demo clients from reference screenshot
 const defaultClients = [
@@ -54,6 +55,12 @@ function Clients() {
   const [totalElements, setTotalElements] = useState(25);
   const [search, setSearch] = useState("");
   const [, setIsLoading] = useState(false);
+  const [deleteModal, setDeleteModal] = useState({
+    isOpen: false,
+    clientId: null,
+    clientName: "",
+    isLoading: false,
+  });
 
   // Helper to get initials
   const getInitials = (name = "") => {
@@ -142,19 +149,30 @@ function Clients() {
     fetchClients();
   }, [fetchClients]);
 
-  // Handle client delete
-  const handleDelete = async (id) => {
-    if (!window.confirm("Êtes-vous sûr de vouloir supprimer ce client ?")) {
-      return;
-    }
+  // Handle client delete click
+  const handleDeleteClick = (client) => {
+    setDeleteModal({
+      isOpen: true,
+      clientId: client.id,
+      clientName: client.nom,
+      isLoading: false,
+    });
+  };
+
+  const handleConfirmDelete = async () => {
+    const id = deleteModal.clientId;
+    if (!id) return;
+    setDeleteModal((prev) => ({ ...prev, isLoading: true }));
     try {
       await api.delete(`/api/clients/${id}`);
       toast.success("Client supprimé avec succès.");
       setClients((prev) => prev.filter((item) => item.id !== id));
       setTotalElements((prev) => Math.max(0, prev - 1));
+      setDeleteModal({ isOpen: false, clientId: null, clientName: "", isLoading: false });
     } catch (err) {
       console.log(err);
       toast.error("Erreur lors de la suppression du client.");
+      setDeleteModal((prev) => ({ ...prev, isLoading: false }));
     }
   };
 
@@ -318,7 +336,7 @@ function Clients() {
                               <button
                                 type="button"
                                 className="btn-action btn-action-delete"
-                                onClick={() => handleDelete(item.id)}
+                                onClick={() => handleDeleteClick(item)}
                                 title="Supprimer le client"
                               >
                                 <DeleteOutlineRoundedIcon fontSize="small" />
@@ -375,6 +393,19 @@ function Clients() {
           </div>
         </main>
       </div>
+
+      <ConfirmModal
+        isOpen={deleteModal.isOpen}
+        title="Supprimer le client"
+        message="Êtes-vous sûr de vouloir supprimer définitivement ce client ? Cette action est irréversible."
+        itemName={deleteModal.clientName}
+        confirmText="Supprimer"
+        isLoading={deleteModal.isLoading}
+        onConfirm={handleConfirmDelete}
+        onClose={() =>
+          setDeleteModal({ isOpen: false, clientId: null, clientName: "", isLoading: false })
+        }
+      />
     </div>
   );
 }

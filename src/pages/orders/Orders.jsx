@@ -18,6 +18,7 @@ import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 
 import "./Orders.css";
 import "../Style.css";
+import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
 
 const defaultDemoOrders = [
   { id: 532, nomClient: "Société ABC", statut: "EN_ATTENTE", dateCommande: "30/05/2024", total: 4500.0 },
@@ -40,6 +41,12 @@ function Orders() {
   const [sortBy, setSortBy] = useState("id");
   const [searchClient, setSearchClient] = useState("");
   const [, setIsLoading] = useState(false);
+  const [deleteModal, setDeleteModal] = useState({
+    isOpen: false,
+    orderId: null,
+    orderLabel: "",
+    isLoading: false,
+  });
 
   // Fetch orders from backend
   const fetchOrders = useCallback(async () => {
@@ -88,16 +95,29 @@ function Orders() {
     fetchOrders();
   }, [fetchOrders]);
 
-  // Handle order delete
-  const handleDelete = async (id) => {
-    if (!window.confirm("Êtes-vous sûr de vouloir supprimer cette commande ?")) return;
+  // Handle order delete click
+  const handleDeleteClick = (order) => {
+    setDeleteModal({
+      isOpen: true,
+      orderId: order.id,
+      orderLabel: `Commande #${order.id} (${order.nomClient || order.client?.nom || "Client"})`,
+      isLoading: false,
+    });
+  };
+
+  const handleConfirmDelete = async () => {
+    const id = deleteModal.orderId;
+    if (!id) return;
+    setDeleteModal((prev) => ({ ...prev, isLoading: true }));
     try {
       await api.delete(`/api/commandes/${id}`);
       toast.success("Commande supprimée avec succès.");
       setOrders((prev) => prev.filter((o) => o.id !== id));
       setTotalElements((prev) => Math.max(0, prev - 1));
+      setDeleteModal({ isOpen: false, orderId: null, orderLabel: "", isLoading: false });
     } catch {
       toast.error("Erreur lors de la suppression de la commande.");
+      setDeleteModal((prev) => ({ ...prev, isLoading: false }));
     }
   };
 
@@ -332,7 +352,7 @@ function Orders() {
                               <button
                                 type="button"
                                 className="btn-action btn-action-delete"
-                                onClick={() => handleDelete(item.id)}
+                                onClick={() => handleDeleteClick(item)}
                                 title="Supprimer la commande"
                               >
                                 <DeleteOutlineRoundedIcon fontSize="small" />
@@ -389,6 +409,19 @@ function Orders() {
           </div>
         </main>
       </div>
+
+      <ConfirmModal
+        isOpen={deleteModal.isOpen}
+        title="Supprimer la commande"
+        message="Êtes-vous sûr de vouloir supprimer définitivement cette commande ? Cette action est irréversible."
+        itemName={deleteModal.orderLabel}
+        confirmText="Supprimer"
+        isLoading={deleteModal.isLoading}
+        onConfirm={handleConfirmDelete}
+        onClose={() =>
+          setDeleteModal({ isOpen: false, orderId: null, orderLabel: "", isLoading: false })
+        }
+      />
     </div>
   );
 }

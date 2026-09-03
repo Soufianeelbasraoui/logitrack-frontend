@@ -1,3 +1,5 @@
+import logoImg from "../../assets/logo1.png";
+
 export default function Footer() {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -13,8 +15,8 @@ export default function Footer() {
           {/* Col 1: About & Socials */}
           <div className="footer-col-about">
             <div className="footer-logo">
-              <span style={{ fontSize: "1.8rem" }}>🚚</span>
-              <span className="navbar-logo-text">LogiTrack</span>
+              <img src={logoImg} alt="LogiTrack Logo" className="footer-logo-img" />
+              <span className="navbar-logo-text">Logi<span>Track</span></span>
             </div>
             <p className="footer-desc">
               Solution cloud tout-en-un de gestion logistique, suivi de transport
