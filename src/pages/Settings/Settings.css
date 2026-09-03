@@ -167,8 +167,8 @@
 }
 
 .settings-tab-btn.active {
-  background: linear-gradient(135deg, #ede9fe, #ddd6fe);
-  color: #5b21b6;
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  color: #c2410c;
 }
 
 /* ── Panel ───────────────────────────────────────────────────── */
@@ -270,7 +270,7 @@
   flex-shrink: 0;
 }
 
-.settings-toggle.on  { background: #6366f1; justify-content: flex-end; }
+.settings-toggle.on  { background: #f97316; justify-content: flex-end; }
 .settings-toggle.off { background: #cbd5e1; justify-content: flex-start; }
 
 .settings-toggle-knob {
@@ -490,7 +490,7 @@
   align-items: center;
   gap: 8px;
   padding: 11px 26px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #f97316, #ea580c);
   color: #ffffff;
   border: none;
   border-radius: 10px;
@@ -498,13 +498,14 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.3);
   font-family: inherit;
 }
 
 .btn-settings-save:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+  box-shadow: 0 6px 18px rgba(249, 115, 22, 0.4);
 }
 
 .btn-settings-save:active {

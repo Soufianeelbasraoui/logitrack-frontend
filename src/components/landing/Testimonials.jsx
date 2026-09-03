@@ -2,27 +2,27 @@ import useScrollAnimation from "../../hooks/useScrollAnimation";
 
 const TESTIMONIALS_DATA = [
   {
-    initials: "YA",
+    initials: "JA",
     avatarBg: "#F97316",
-    name: "Youssef Alami",
+    name: "James Anderson",
     role: "Directeur Logistique",
     company: "Atlas Express",
     text: "LogiTrack a transformé notre gestion quotidienne. La traçabilité de nos commandes et l'inventaire en direct ont réduit nos délais de livraison de plus de 35%.",
     stars: "★★★★★",
   },
   {
-    initials: "NB",
+    initials: "EC",
     avatarBg: "#2563EB",
-    name: "Nadia Bennani",
+    name: "Emily Carter",
     role: "Responsable Supply Chain",
     company: "Maghreb Distribution",
     text: "Interface intuitive et très rapide. Nos agents sur le terrain et nos managers collaborent désormais en toute transparence grâce aux statuts en temps réel.",
     stars: "★★★★★",
   },
   {
-    initials: "OE",
+    initials: "MB",
     avatarBg: "#10B981",
-    name: "Omar El Fassi",
+    name: "Michael Brown",
     role: "Chef de Projet",
     company: "Casablanca Freight",
     text: "Le système de rôles ADMIN, MANAGER, AGENT est parfait pour notre équipe. La sécurité JWT et la solidité de l'API nous offrent une sérénité absolue.",

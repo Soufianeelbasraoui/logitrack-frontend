@@ -339,9 +339,9 @@
 }
 
 .pagination-btn.active {
-  background-color: #1d4ed8;
+  background-color: #f97316;
   color: #ffffff;
-  border-color: #1d4ed8;
+  border-color: #f97316;
   font-weight: 600;
 }
 
@@ -361,4 +361,4 @@
   margin: 0;
   font-size: 14px;
   font-weight: 500;
-}
+}

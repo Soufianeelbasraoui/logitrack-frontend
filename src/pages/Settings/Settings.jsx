@@ -206,7 +206,7 @@ function Settings() {
 
     fetchStat("/api/users/count", "users");
     fetchStat("/api/clients/count", "clients");
-    fetchStat("/api/produits/count", "products");
+    fetchStat("/api/products/count", "products");
     fetchStat("/api/commandes/count", "orders");
   }, []);
 

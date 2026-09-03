@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import {
   MailOutlineOutlined,
   LockOutlined,
+  ArrowBackOutlined,
   VisibilityOutlined,
   VisibilityOffOutlined,
 } from "@mui/icons-material";
@@ -54,6 +55,11 @@ function Login() {
       <LeftPanel />
 
       <div className="auth-right-container">
+        <Link to="/" className="auth-back-link">
+          <ArrowBackOutlined fontSize="small" />
+          <span>Retour à l'accueil</span>
+        </Link>
+
         <div className="auth-card login-card-custom">
           <div className="auth-card-header">
             <h2 className="auth-title">Connexion</h2>

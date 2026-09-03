@@ -9,6 +9,7 @@
 .auth-right-container {
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 30px 20px;
@@ -27,6 +28,25 @@
 
 .login-card-custom {
   max-width: 460px;
+}
+
+.auth-back-link {
+  display: inline-flex;
+  width: 100%;
+  max-width: 460px;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  color: #64748B;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.auth-back-link:hover {
+  color: #F97316;
+  transform: translateX(-2px);
 }
 
 .auth-card-header {

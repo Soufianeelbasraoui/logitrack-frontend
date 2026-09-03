@@ -58,7 +58,7 @@
 
 .avatar-camera-btn:hover {
   transform: scale(1.08);
-  background: #2563eb;
+  background: #f97316;
 }
 
 .profile-user-name {
@@ -210,7 +210,7 @@
   left: 0;
   width: 100%;
   height: 2.5px;
-  background-color: #2563eb;
+  background-color: #f97316;
   border-radius: 2px;
 }
 
